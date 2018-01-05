@@ -16,7 +16,7 @@ from enigma import eTimer
 
 import xml.etree.cElementTree
 
-from Screens.Setup import Setup, getSetupTitle
+from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 
 # read the menu
 mdom = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
@@ -149,6 +149,8 @@ class Menu(Screen, ProtectedScreen):
 			elif x.tag == 'setup':
 				id = x.get("id")
 				if item_text == "":
+					if getSetupTitleLevel(id) > config.usage.setup_level.index:
+						return
 					item_text = _(getSetupTitle(id))
 				else:
 					item_text = _(item_text)
@@ -340,9 +342,9 @@ class Menu(Screen, ProtectedScreen):
 class MenuSort(Menu):
 	def __init__(self, session, parent):
 		self["key_red"] = Label(_("Exit"))
-		self["key_green"] = Label(_("Save changes"))
-		self["key_yellow"] = Label(_("Toggle show/hide"))
-		self["key_blue"] = Label(_("Reset order (All)"))
+		self["key_green"] = Label(_("Save"))
+		self["key_yellow"] = Label(_("Hide"))
+		self["key_blue"] = Label(_("Reset"))
 		self.somethingChanged = False
 		Menu.__init__(self, session, parent)
 		self.skinName = "MenuSort"
@@ -380,9 +382,9 @@ class MenuSort(Menu):
 	def selectionChanged(self):
 		selection = self["menu"].getCurrent()[2]
 		if self.sub_menu_sort.getConfigValue(selection, "hidden"):
-			self["key_yellow"].setText(_("show"))
+			self["key_yellow"].setText(_("Show"))
 		else:
-			self["key_yellow"].setText(_("hide"))
+			self["key_yellow"].setText(_("Hide"))
 
 	def keySave(self):
 		if self.somethingChanged:

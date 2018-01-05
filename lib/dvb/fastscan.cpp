@@ -205,7 +205,7 @@ uint16_t FastScanTransportStream::getOrbitalPosition(void) const
 	return 0;
 }
 
-uint32_t FastScanTransportStream::getFrequency(void) const
+int32_t FastScanTransportStream::getFrequency(void) const
 {
 	if (deliverySystem) return deliverySystem->getFrequency();
 	return 0;
@@ -235,7 +235,7 @@ uint8_t FastScanTransportStream::getModulation(void) const
 	return 0;
 }
 
-uint32_t FastScanTransportStream::getSymbolRate(void) const
+int32_t FastScanTransportStream::getSymbolRate(void) const
 {
 	if (deliverySystem) return deliverySystem->getSymbolRate();
 	return 0;
@@ -508,9 +508,6 @@ void eFastScan::parseResult()
 			fesat.modulation = (*it)->getModulation();
 			fesat.rolloff = (*it)->getRollOff();
 			fesat.pilot = eDVBFrontendParametersSatellite::Pilot_Unknown;
-			fesat.is_id = NO_STREAM_ID_FILTER;
-			fesat.pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
-			fesat.pls_code = 1;
 
 			parm->setDVBS(fesat);
 			db->addChannelToList(chid, parm);

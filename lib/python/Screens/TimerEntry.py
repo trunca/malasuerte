@@ -297,7 +297,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				_("Select channel to record from"),
 				currentBouquet=True
 			)
-		elif cur == self.dirname:
+		elif config.usage.setup_level.index >= 2 and cur == self.dirname:
 			menu = [(_("Open select location"), "empty")]
 			if self.timerentry_type.value == "repeated" and self.timerentry_name.value:
 				menu.append((_("Open select location as timer name"), "timername"))

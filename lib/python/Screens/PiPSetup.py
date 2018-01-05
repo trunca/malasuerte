@@ -83,6 +83,7 @@ class PiPSetup(Screen):
 		resize += 100 # resize is in percent, so resize=+20 means: 120%
 
 		oldsize = self.size
+
 		if self.mode != "split":
 			w = clip(self.size[0] * resize / 100, MIN_W, MAX_W)
 			h = clip(self.size[1] * resize / 100, MIN_H, MAX_H)

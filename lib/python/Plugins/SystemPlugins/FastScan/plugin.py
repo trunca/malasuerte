@@ -18,7 +18,7 @@ import os
 
 config.misc.fastscan = ConfigSubsection()
 config.misc.fastscan.last_configuration = ConfigText(default="()")
-config.misc.fastscan.auto = ConfigSelection(default="true", choices=[("true", _("yes")), ("false", _("no")), ("multi", _("multi"))])
+config.misc.fastscan.auto = ConfigSelection(default="false", choices=[("true", _("yes")), ("false", _("no")), ("multi", _("multi"))])
 config.misc.fastscan.autoproviders = ConfigText(default="()")
 
 class FastScanStatus(Screen):
@@ -47,7 +47,7 @@ class FastScanStatus(Screen):
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
 
-		if hasattr(self.session, "pipshown") and self.session.pipshown:
+		if self.session.pipshown:
 			from Screens.InfoBar import InfoBar
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
@@ -234,9 +234,6 @@ class FastScanScreen(ConfigListScreen, Screen):
 		transponderParameters.modulation = self.transponders[number][7]
 		transponderParameters.rolloff = self.transponders[number][8]
 		transponderParameters.pilot = self.transponders[number][9]
-		transponderParameters.is_id = -1
-		transponderParameters.pls_mode = eDVBFrontendParametersSatellite.PLS_Root
-		transponderParameters.pls_code = 1
 		return transponderParameters
 
 	def startScan(self):
@@ -312,7 +309,7 @@ def FastScanMain(session, **kwargs):
 				continue
 			if n.config_mode == "nothing":
 				continue
-			if n.config_mode in ("loopthrough", "satposdepends"):
+			if n.config_mode in ("loopthrough_internal", "loopthrough_external", "satposdepends"):
 				root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.connectedTo.value))
 				if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
 					continue
@@ -377,7 +374,7 @@ def autostart(reason, **kwargs):
 
 def FastScanStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Fast Scan"), FastScanMain, "fastscan", None)]
+		return [(_("Fast Scan"), FastScanMain, "fastscan", 15)]
 	else:
 		return []
 

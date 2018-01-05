@@ -74,7 +74,7 @@ class VirtualKeyBoard(Screen):
 
 		self["country"] = StaticText("")
 		self["header"] = Label(title)
-		self["text"] = Input(currPos=len(kwargs.get("text", "").decode("utf-8",'ignore')), allMarked=False, **kwargs)
+		self["text"] = Input(currPos=len(kwargs.get("text", "").decode("utf-8")), allMarked=False, **kwargs)
 		self["list"] = VirtualKeyBoardList([])
 
 		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
@@ -361,7 +361,7 @@ class VirtualKeyBoard(Screen):
 			self.max_key += len(keys)
 		self.max_key -= 1
 		self.markSelectedKey()
-
+		
 	def markSelectedKey(self):
 		w, h = skin.parameters.get("VirtualKeyboard",(45, 45))
 		if self.previousSelectedKey is not None:

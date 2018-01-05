@@ -23,11 +23,11 @@ dist_install_DATA = \
 	ico_mp_play.png \
 	ico_mp_rewind.png \
 	ico_mp_stop.png \
-	ico_dvb_c-fs8.png \
-	ico_dvb_s-fs8.png \
-	ico_dvb_t-fs8.png \
-	ico_service_group-fs8.png \
-	ico_stream-fs8.png \
+	ico_dvb_c.png \
+	ico_dvb_s.png \
+	ico_dvb_t.png \
+	ico_service_group.png \
+	ico_stream.png \
 	icon_crypt.png \
 	icon_dolby.png \
 	icon_event.png \
@@ -48,6 +48,7 @@ dist_install_DATA = \
 	input_rcnew.png \
 	input_rcold-configured.png \
 	input_rcold.png \
+	input_warning.png \
 	lock_error.png \
 	lock_off.png \
 	lock_on.png \

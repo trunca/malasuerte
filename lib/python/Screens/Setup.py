@@ -40,8 +40,9 @@ class SetupSummary(Screen):
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
 		self["SetupValue"] = StaticText("")
-		self.onShow.append(self.addWatcher)
-		self.onHide.append(self.removeWatcher)
+		if hasattr(self.parent,"onChangedEntry"):
+			self.onShow.append(self.addWatcher)
+			self.onHide.append(self.removeWatcher)
 
 	def addWatcher(self):
 		if hasattr(self.parent,"onChangedEntry"):
@@ -65,7 +66,7 @@ class Setup(ConfigListScreen, Screen):
 	ALLOW_SUSPEND = True
 
 	def removeNotifier(self):
-		config.usage.setup_level.notifiers.remove(self.levelChanged)
+		self.onNotifiers.remove(self.levelChanged)
 
 	def levelChanged(self, configElement):
 		list = []
@@ -85,10 +86,14 @@ class Setup(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
-
+		self.item = None
+		self.onChangedEntry = [ ]
 		self.setup = setup
 		list = []
+		self.onNotifiers = [ ]
 		self.refill(list)
+		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		self.createSetup()
 
 		#check for list.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
@@ -102,10 +107,38 @@ class Setup(ConfigListScreen, Screen):
 				"menu": self.closeRecursive,
 			}, -2)
 
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
-
 		self.changedEntry()
 		self.setTitle(_(self.setup_title))
+
+	def createSetup(self):
+		list = []
+		self.refill(list)
+		self["config"].setList(list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+		self.moveToItem(self.item)
+
+	def getIndexFromItem(self, item):
+		if item is not None:
+			for x in range(len(self["config"].list)):
+				if self["config"].list[x][0] == item[0]:
+					return x
+		return None
+
+	def moveToItem(self, item):
+		newIdx = self.getIndexFromItem(item)
+		if newIdx is None:
+			newIdx = 0
+		self["config"].setCurrentIndex(newIdx)
+
+	# for summary:
+	def changedEntry(self):
+		self.item = self["config"].getCurrent()
+		try:
+			if isinstance(self["config"].getCurrent()[1], ConfigYesNo) or isinstance(self["config"].getCurrent()[1], ConfigSelection):
+				self.createSetup()
+		except:
+			pass
 
 	def addItems(self, list, parentNode):
 		for x in parentNode:
@@ -114,14 +147,21 @@ class Setup(ConfigListScreen, Screen):
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
 
-				if not self.levelChanged in config.usage.setup_level.notifiers:
-					config.usage.setup_level.notifiers.append(self.levelChanged)
+				if not self.onNotifiers:
+					self.onNotifiers.append(self.levelChanged)
 					self.onClose.append(self.removeNotifier)
 
 				if item_level > config.usage.setup_level.index:
 					continue
 
 				requires = x.get("requires")
+				if requires and requires.startswith('config.'):
+					item = eval(requires or "")
+					if item.value and not item.value == "0":
+						SystemInfo[requires] = True
+					else:
+						SystemInfo[requires] = False
+
 				if requires and not SystemInfo.get(requires, False):
 					continue
 
@@ -143,3 +183,14 @@ def getSetupTitle(id):
 		if x.get("key") == id:
 			return x.get("title", "").encode("UTF-8")
 	raise SetupError("unknown setup id '%s'!" % repr(id))
+
+def getSetupTitleLevel(id):
+	try:
+		xmldata = setupdom().getroot()
+		for x in xmldata.findall("setup"):
+			if x.get("key") == id:
+				return int(x.get("level", 0))
+		raise SetupError("unknown setup level id '%s'!" % repr(id))
+		return 0
+	except:
+		pass

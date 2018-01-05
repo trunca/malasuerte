@@ -18,6 +18,7 @@ class eDVBDB: public iDVBChannelList
 	friend class eDVBDBBouquetQuery;
 	friend class eDVBDBSatellitesQuery;
 	friend class eDVBDBProvidersQuery;
+	friend class eRTSPStreamClient;
 
 	struct channel
 	{
@@ -45,7 +46,6 @@ public:
 	PyObject *getFlag(const eServiceReference &service);
 	PyObject *getCachedPid(const eServiceReference &service, int id);
 	bool isCrypted(const eServiceReference &service);
-	bool hasCAID(const eServiceReference &service, unsigned int caid);
 	RESULT addCAID(const eServiceReference &service, unsigned int caid);
 	RESULT addFlag(const eServiceReference &service, unsigned int flagmask);
 	RESULT removeFlag(const eServiceReference &service, unsigned int flagmask);

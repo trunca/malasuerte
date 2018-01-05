@@ -1,8 +1,11 @@
-from config import config, ConfigSubsection, ConfigSlider, ConfigYesNo, ConfigNothing
+from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from enigma import eDBoxLCD
 from Components.SystemInfo import SystemInfo
+from Tools.Directories import fileExists
 from Screens.InfoBar import InfoBar
 from Screens.Screen import Screen
+
+from boxbranding import getBoxType
 
 class dummyScreen(Screen):
 	skin = """<screen position="0,0" size="0,0" transparent="1">
@@ -38,6 +41,9 @@ class LCD:
 	def setFlipped(self, value):
 		eDBoxLCD.getInstance().setFlipped(value)
 
+	def setScreenShot(self, value):
+		eDBoxLCD.getInstance().setDump(value)
+
 	def isOled(self):
 		return eDBoxLCD.getInstance().isOled()
 
@@ -50,10 +56,90 @@ def standbyCounterChanged(dummy):
 	config.lcd.standby.apply()
 
 def InitLcd():
-	detected = eDBoxLCD.getInstance() and eDBoxLCD.getInstance().detected()
+	if getBoxType() in ('gb800se', 'gb800solo', 'gb800seplus', 'gbipbox', 'gbultra', 'gbultrase', 'spycat', 'quadbox2400', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
+		detected = False
+	else:
+		detected = eDBoxLCD.getInstance() and eDBoxLCD.getInstance().detected()
+
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection();
+
+	if fileExists("/proc/stb/lcd/mode"):
+		f = open("/proc/stb/lcd/mode", "r")
+		can_lcdmodechecking = f.read().strip().split(" ")
+		f.close()
+	else:
+		can_lcdmodechecking = False
+	
+	SystemInfo["LCDMiniTV"] = can_lcdmodechecking
+
 	if detected:
+		ilcd = LCD()
+		if can_lcdmodechecking:
+			def setLCDModeMinitTV(configElement):
+				try:
+					f = open("/proc/stb/lcd/mode", "w")
+					f.write(configElement.value)
+					f.close()
+				except:
+					pass
+			def setMiniTVFPS(configElement):
+				try:
+					f = open("/proc/stb/lcd/fps", "w")
+					f.write("%d \n" % configElement.value)
+					f.close()
+				except:
+					pass
+			def setLCDModePiP(configElement):
+				pass
+			def setLCDScreenshot(configElement):
+				ilcd.setScreenShot(configElement.value);
+
+			if getBoxType() in ('gbquad4k', 'gbue4k'):
+				config.lcd.modepip = ConfigSelection(default = "0", choices=[
+						("0", _("off")),
+						("4", _("PIP")),
+						("6", _("PIP with OSD"))])
+			else:
+				config.lcd.modepip = ConfigSelection(default = "0", choices=[
+						("0", _("off")),
+						("5", _("PIP")),
+						("7", _("PIP with OSD"))])
+
+			if getBoxType() in ('gbquad4k', 'gbue4k', 'gbquad', 'gbquadplus'):
+				config.lcd.modepip.addNotifier(setLCDModePiP)
+			else:
+				config.lcd.modepip = ConfigNothing()
+
+			config.lcd.screenshot = ConfigYesNo(default=False)
+			config.lcd.screenshot.addNotifier(setLCDScreenshot)
+
+			if getBoxType() in ('gbquad4k', 'gbue4k'):
+				#  (0:normal, 1:video0, 2:fb, 3:vide0+fb, 4:video1, 5:vide0+video1, 6:video1+fb, 7:video0+video1+fb)
+				config.lcd.modeminitv = ConfigSelection(default = "0", choices=[
+						("0", _("normal")),
+						("1", _("MiniTV - video0")),
+						("2", _("OSD - fb")),
+						("3", _("MiniTV with OSD - video0+fb")),
+						("4", _("MiniTV - video1")),
+						("5", _("MiniTV - video0+video1")),
+						("6", _("MiniTV with OSD - video1+fb")),
+						("7", _("MiniTV with OSD - video0+video1+fb"))]) 
+			else:
+				config.lcd.modeminitv = ConfigSelection(default = "0", choices=[
+						("0", _("normal")),
+						("1", _("MiniTV - video0")),
+						("2", _("OSD - fb")),
+						("3", _("MiniTV with OSD - video0+fb"))]) 
+			config.lcd.fpsminitv = ConfigSlider(default=30, limits=(0, 30))
+			config.lcd.modeminitv.addNotifier(setLCDModeMinitTV)
+			config.lcd.fpsminitv.addNotifier(setMiniTVFPS)
+		else:
+			config.lcd.modeminitv = ConfigNothing()
+			config.lcd.modepip = ConfigNothing()
+			config.lcd.screenshot = ConfigNothing()
+			config.lcd.fpsminitv = ConfigNothing()
+			
 		def setLCDbright(configElement):
 			ilcd.setBright(configElement.value);
 
@@ -68,8 +154,6 @@ def InitLcd():
 
 		standby_default = 0
 
-		ilcd = LCD()
-
 		if not ilcd.isOled():
 			config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
 			config.lcd.contrast.addNotifier(setLCDcontrast);
@@ -80,15 +164,12 @@ def InitLcd():
 		config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
 		config.lcd.standby.addNotifier(setLCDbright);
 		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
-
 		config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))
 		config.lcd.bright.addNotifier(setLCDbright);
 		config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
 		config.lcd.bright.callNotifiersOnSaveAndCancel = True
-
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);
-
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped);
 

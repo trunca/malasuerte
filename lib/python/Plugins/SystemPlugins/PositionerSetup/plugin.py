@@ -107,7 +107,7 @@ class PositionerSetup(Screen):
 					self.oldref_stop = True
 				else:
 					for n in nimmanager.nim_slots:
-						if n.config_mode in ("loopthrough", "satposdepends"):
+						if n.config_mode in ("loopthrough_internal", "loopthrough_external", "satposdepends"):
 							root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.connectedTo.value))
 							if int(n.config.connectedTo.value) == self.feid:
 								self.oldref_stop = True
@@ -1342,6 +1342,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			"fec": eDVBFrontendParametersSatellite.FEC_Auto,
 			"fec_s2": eDVBFrontendParametersSatellite.FEC_9_10,
 			"modulation": eDVBFrontendParametersSatellite.Modulation_QPSK,
+			"is_id":0,
 			"pls_mode": eDVBFrontendParametersSatellite.PLS_Root,
 			"pls_code": 1 }
 		if frontendData is not None:
@@ -1485,7 +1486,7 @@ class TunerScreen(ConfigListScreen, Screen):
 
 	def updateTransponders(self):
 		if len(self.tuning.sat.choices):
-			transponderlist = nimmanager.getTransponders(int(self.tuning.sat.value), self.feid)
+			transponderlist = nimmanager.getTransponders(int(self.tuning.sat.value))
 			tps = []
 			for transponder in transponderlist:
 				tps.append(self.transponderToString(transponder, scale = 1000))
@@ -1498,7 +1499,7 @@ class TunerScreen(ConfigListScreen, Screen):
 		ConfigListScreen.keyRight(self)
 
 	def keyGo(self):
-		returnvalue = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 1)
+		returnvalue = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
 		satpos = int(self.tuning.sat.value)
 		if self.tuning.type.value == "manual_transponder":
 			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
@@ -1574,12 +1575,12 @@ def PositionerMain(session, **kwargs):
 
 def PositionerSetupStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Positioner setup"), PositionerMain, "positioner_setup", None)]
+		return [(_("Positioner"), PositionerMain, "positioner_setup", None)]
 	else:
 		return []
 
 def Plugins(**kwargs):
 	if (nimmanager.hasNimType("DVB-S")):
-		return PluginDescriptor(name=_("Positioner setup"), description = _("Setup your positioner"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = PositionerSetupStart)
+		return PluginDescriptor(name=_("Positioner"), description = _("Setup your positioner"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = PositionerSetupStart)
 	else:
 		return []

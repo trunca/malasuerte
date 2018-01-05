@@ -1,4 +1,4 @@
-from Tools.Directories import SCOPE_SKIN, resolveFilename
+from boxbranding import *
 
 hw_info = None
 
@@ -11,11 +11,12 @@ class HardwareInfo:
 
 	def __init__(self):
 		global hw_info
-		if hw_info:
+		if hw_info is not None:
 			return
 		hw_info = self
 
 		print "[HardwareInfo] Scanning hardware info"
+
 		# Version
 		try:
 			self.device_version = open("/proc/stb/info/version").read().strip()
@@ -28,33 +29,29 @@ class HardwareInfo:
 		except:
 			pass
 
-		# Name ... bit odd, but history prevails
+		# Name
 		try:
 			self.device_name = open("/proc/stb/info/model").read().strip()
 		except:
 			pass
 
 		# Model
-		for line in open((resolveFilename(SCOPE_SKIN, 'hw_info/hw_info.cfg')), 'r'):
-			if not line.startswith('#') and not line.isspace():
-				l = line.strip().replace('\t', ' ')
-				if ' ' in l:
-					infoFname, prefix = l.split()
-				else:
-					infoFname = l
-					prefix = ""
-				try:
-					self.device_model = prefix + open("/proc/stb/info/" + infoFname).read().strip()
-					break
-				except:
-					pass
+		try:
+			self.device_model = open("/proc/stb/info/gbmodel").read().strip()
+		except:
+			pass
 
-		self.device_model = self.device_model or self.device_name
+		if self.device_model is None:
+			self.device_model = self.device_name
 
-		# only some early DMM boxes do not have HDMI hardware
-		self.device_hdmi =  self.device_model not in ("dm7025", "dm800", "dm8000")
+		# HDMI capbility
+		if getMachineBuild() in ('gb7325', 'gb7358', 'gb7356', 'gb7362', 'gb73625', 'gb72525', 'gb7252', 'xc7362', 'hd2400', 'hd51'):
+			self.device_hdmi = True
+		else:
+			self.device_hdmi = False
 
 		print "Detected: " + self.get_device_string()
+
 
 	def get_device_name(self):
 		return hw_info.device_name
@@ -69,11 +66,12 @@ class HardwareInfo:
 		return hw_info.device_revision
 
 	def get_device_string(self):
-		if hw_info.device_revision:
-			return "%s (%s-%s)" % (hw_info.device_model, hw_info.device_revision, hw_info.device_version)
-		elif hw_info.device_version:
-			return "%s (%s)" % (hw_info.device_model, hw_info.device_version)
-		return hw_info.device_model
+		s = hw_info.device_model
+		if hw_info.device_revision != "":
+			s += " (" + hw_info.device_revision + "-" + hw_info.device_version + ")"
+		elif hw_info.device_version != "":
+			s += " (" + hw_info.device_version + ")"
+		return s
 
 	def has_hdmi(self):
 		return hw_info.device_hdmi

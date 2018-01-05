@@ -5,14 +5,15 @@ import os
 
 profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop
-from Components.config import ConfigSubsection, ConfigText, config
+from Components.config import ConfigSubsection, ConfigText, config, ConfigNothing
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_FONTS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists, SCOPE_SKIN_IMAGE
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
-from Components.SystemInfo import SystemInfo
+from boxbranding import getBoxType
+# from Components.SystemInfo import SystemInfo
 
 colorNames = {}
 # Predefined fonts, typically used in built-in screens and for components like
@@ -43,6 +44,9 @@ dom_skins = [ ]
 
 def addSkin(name, scope = SCOPE_SKIN):
 	# read the skin
+	if name is None or not len(name):
+		print "[SKIN ERROR] attempt to add a skin without filename"
+		return False
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
 		mpath = os.path.dirname(filename) + "/"
@@ -75,13 +79,12 @@ def skin_user_skinname():
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"
+DEFAULT_SKIN = "GigabluePax/skin.xml"
+# DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"
 # on SD hardware, PLi-HD will not be available
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
-	# in that case, fallback to Magic (which is an SD skin)
-	DEFAULT_SKIN = "Magic/skin.xml"
-	if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
-		DEFAULT_SKIN = "skin.xml"
+	DEFAULT_SKIN = "om-black/skin.xml"
+
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 profile("LoadSkin")
@@ -96,7 +99,19 @@ if not name or not res:
 addSkin('skin_box.xml')
 # add optional discrete second infobar
 addSkin('skin_second_infobar.xml')
+
+if getBoxType() in ('gb800ue', 'gb800ueplus', 'gbultraue', 'gbultraueh', 'gbquad', 'gbquadplus', 'gbquad4k', 'gbue4k'):
+	config.skin.lcdskin = ConfigText(default = "skin_lcd_default.xml")
+else:
+	config.skin.lcdskin = ConfigNothing()
+
 display_skin_id = 1
+if fileExists('/usr/share/enigma2/lcd_skin/skin_lcd_default.xml'):
+	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.lcdskin.value)):
+		addSkin(config.skin.lcdskin.value, SCOPE_CONFIG)
+	else:
+		addSkin('lcd_skin/' + config.skin.lcdskin.value)
+		
 addSkin('skin_display.xml')
 addSkin('skin_text.xml')
 
@@ -164,10 +179,9 @@ def parseCoordinate(s, e, size=0, font=None):
 				val = int(s) # for speed
 			except:
 				val = eval(s)
-	if val < 0:
-		return 0
+	#if val < 0: # shadowoffset might have negative value
+	#	return 0 # shadowoffset might have negative value
 	return int(val)  # make sure an integer value is returned
-
 
 def getParentSize(object, desktop):
 	size = eSize()
@@ -257,7 +271,7 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 def morphRcImagePath(value):
 	if rc_model.rcIsDefault() is False:
 		if value == '/usr/share/enigma2/skin_default/rc.png' or value == '/usr/share/enigma2/skin_default/rcold.png':
-			value = rc_model.getRcImg()
+			value = rc_model.getRcLocation() + 'rc.png'
 	return value
 
 def loadPixmap(path, desktop):
@@ -296,6 +310,15 @@ class AttributeParser:
 			self.guiObject.resize(eSize(*value))
 		else:
 			self.guiObject.resize(parseSize(value, self.scaleTuple, self.guiObject, self.desktop))
+	def animationMode(self, value):
+		self.guiObject.setAnimationMode(
+			{ "disable": 0x00,
+				"off": 0x00,
+				"offshow": 0x10,
+				"offhide": 0x01,
+				"onshow": 0x01,
+				"onhide": 0x10,
+			}[value])
 	def title(self, value):
 		self.guiObject.setTitle(_(value))
 	def text(self, value):
@@ -413,7 +436,11 @@ class AttributeParser:
 	def shadowOffset(self, value):
 		self.guiObject.setShadowOffset(parsePosition(value, self.scaleTuple))
 	def noWrap(self, value):
-		self.guiObject.setNoWrap(1)
+		self.guiObject.setNoWrap(int(value))
+	def linelength(self, value):
+		pass
+	def OverScan(self, value):
+		self.guiObject.setOverscan(value)
 
 def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1))):
 	# Someone still using applySingleAttribute?
@@ -476,7 +503,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					parameters["ServiceInfoRight"] = (450,0,1000,45)
 					parameters["SelectionListDescr"] = (45,3,1000,32)
 					parameters["SelectionListLock"] = (0,2,36,36)
-					parameters["ConfigListSeperator"] = 500
+					parameters["ConfigListSeperator"] = 300
 					parameters["VirtualKeyboard"] = (68,68)
 					parameters["PartnerBoxEntryListName"] = (8,2,225,38)
 					parameters["PartnerBoxEntryListIP"] = (180,2,225,38)
@@ -733,7 +760,7 @@ class SizeTuple(tuple):
 
 class SkinContext:
 	def __init__(self, parent=None, pos=None, size=None, font=None):
-	        if parent is not None:
+		if parent is not None:
 			if pos is not None:
 				pos, size = parent.parse(pos, size, font)
 				self.x, self.y = pos
@@ -744,26 +771,26 @@ class SkinContext:
 				self.w = None
 				self.h = None
 	def __str__(self):
-	        return "Context (%s,%s)+(%s,%s) " % (self.x, self.y, self.w, self.h)
+		return "Context (%s,%s)+(%s,%s) " % (self.x, self.y, self.w, self.h)
 	def parse(self, pos, size, font):
-	        if pos == "fill":
-	                pos = (self.x, self.y)
-	                size = (self.w, self.h)
-	                self.w = 0
-	                self.h = 0
+		if pos == "fill":
+			pos = (self.x, self.y)
+			size = (self.w, self.h)
+			self.w = 0
+			self.h = 0
 		else:
 			w,h = size.split(',')
 			w = parseCoordinate(w, self.w, 0, font)
 			h = parseCoordinate(h, self.h, 0, font)
 			if pos == "bottom":
-			        pos = (self.x, self.y + self.h - h)
-			        size = (self.w, h)
-			        self.h -= h
+				pos = (self.x, self.y + self.h - h)
+				size = (self.w, h)
+				self.h -= h
 			elif pos == "top":
-			        pos = (self.x, self.y)
-			        size = (self.w, h)
-			        self.h -= h
-			        self.y += h
+				pos = (self.x, self.y)
+				size = (self.w, h)
+				self.h -= h
+				self.y += h
 			elif pos == "left":
 				pos = (self.x, self.y)
 				size = (w, self.h)
@@ -782,19 +809,19 @@ class SkinContext:
 class SkinContextStack(SkinContext):
 	# A context that stacks things instead of aligning them
 	def parse(self, pos, size, font):
-	        if pos == "fill":
-	                pos = (self.x, self.y)
-	                size = (self.w, self.h)
+		if pos == "fill":
+			pos = (self.x, self.y)
+			size = (self.w, self.h)
 		else:
 			w,h = size.split(',')
 			w = parseCoordinate(w, self.w, 0, font)
 			h = parseCoordinate(h, self.h, 0, font)
 			if pos == "bottom":
-			        pos = (self.x, self.y + self.h - h)
-			        size = (self.w, h)
+				pos = (self.x, self.y + self.h - h)
+				size = (self.w, h)
 			elif pos == "top":
-			        pos = (self.x, self.y)
-			        size = (self.w, h)
+				pos = (self.x, self.y)
+				size = (self.w, h)
 			elif pos == "left":
 				pos = (self.x, self.y)
 				size = (w, self.h)
@@ -999,7 +1026,7 @@ def readSkin(screen, skin, names, desktop):
 		if layout == 'stack':
 			cc = SkinContextStack
 		else:
-		        cc = SkinContext
+			cc = SkinContext
 		try:
 			c = cc(context, widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'))
 		except Exception, ex:
@@ -1007,12 +1034,12 @@ def readSkin(screen, skin, names, desktop):
 		process_screen(widget, c)
 
 	processors = {
-	        None: process_none,
-	        "widget": process_widget,
-	        "applet": process_applet,
-	        "eLabel": process_elabel,
-	        "ePixmap": process_epixmap,
-	        "panel": process_panel
+			None: process_none,
+			"widget": process_widget,
+			"applet": process_applet,
+			"eLabel": process_elabel,
+			"ePixmap": process_epixmap,
+			"panel": process_panel
 	}
 
 	try:

@@ -212,8 +212,41 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
 
 		if (res_mgr->canAllocateChannel(chid, chid_ignore, system, simulate))
+		{
+			std::string python_config_str;
+			bool use_ci_assignment = eConfigManager::getConfigBoolValue("config.misc.use_ci_assignment", false);
+			if (use_ci_assignment)
+			{
+				int is_ci_playable = 1;
+				PyObject *pName, *pModule, *pFunc;
+				PyObject *pArgs, *pArg, *pResult;
+				Py_Initialize();
+				pName = PyString_FromString("Tools.CIHelper");
+				pModule = PyImport_Import(pName);
+				Py_DECREF(pName);
+				if (pModule != NULL)
+				{
+					pFunc = PyObject_GetAttrString(pModule, "isPlayable");
+					if (pFunc) 
+					{
+						pArgs = PyTuple_New(1);
+						pArg = PyString_FromString(ref.toString().c_str());
+						PyTuple_SetItem(pArgs, 0, pArg);
+						pResult = PyObject_CallObject(pFunc, pArgs);
+						Py_DECREF(pArgs);
+						if (pResult != NULL)
+						{
+							is_ci_playable = PyInt_AsLong(pResult);
+							Py_DECREF(pResult);
+							return is_ci_playable;
+						}
+					}
+				}
+				eDebug("isPlayble... error in python code");
+				PyErr_Print();
+			}
 			return 1;
-
+		}
 		if (remote_fallback_enabled)
 			return 2;
 	}
@@ -410,7 +443,7 @@ static ePtr<eDVBFrontendParameters> parseFrontendData(char* line, int version)
 				modulation=eDVBFrontendParametersSatellite::Modulation_QPSK,
 				rolloff=eDVBFrontendParametersSatellite::RollOff_alpha_0_35,
 				pilot=eDVBFrontendParametersSatellite::Pilot_Unknown,
-				is_id = NO_STREAM_ID_FILTER,
+				is_id = 0, //NO_STREAM_ID_FILTER
 				pls_code = 1,
 				pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
 			sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
@@ -1220,34 +1253,43 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 	if (!PyDict_Check(tp_dict)) {
 		PyErr_SetString(PyExc_StandardError,
 			"type error");
-			eDebug("[eDVBDB] readSatellites arg 2 is not a python dict");
-		return NULL;
+			eDebug("[eDVBDB] arg 2 (tp_dict) is not a python dict");
+		Py_INCREF(Py_False);
+		return Py_False;
 	}
 	else if (!PyDict_Check(sat_dict))
 	{
 		PyErr_SetString(PyExc_StandardError,
 			"type error");
-			eDebug("[eDVBDB] readSatellites arg 1 is not a python dict");
-		return NULL;
+			eDebug("[eDVBDB] arg 1 (sat_dict) is not a python dict");
+		Py_INCREF(Py_False);
+		return Py_False;
 	}
 	else if (!PyList_Check(sat_list))
 	{
 		PyErr_SetString(PyExc_StandardError,
 			"type error");
-			eDebug("[eDVBDB] readSatellites arg 0 is not a python list");
-		return NULL;
+			eDebug("[eDVBDB] arg 0 (sat_list) is not a python list");
+		Py_INCREF(Py_False);
+		return Py_False;
 	}
-
-	const char* satellitesFilename = "/etc/enigma2/satellites.xml";
-	if (::access(satellitesFilename, R_OK) < 0)
+	std::string satellitesFilename = eEnv::resolve("${sysconfdir}/enigma2/satellites.xml");
+	if (::access(satellitesFilename.c_str(), R_OK) < 0)
 	{
-		satellitesFilename = "/etc/tuxbox/satellites.xml";
+		satellitesFilename = eEnv::resolve("${sysconfdir}/tuxbox/satellites.xml");
+		if (::access(satellitesFilename.c_str(), R_OK) < 0)
+		{
+			eDebug("[eDVBDB] satellites.xml not found");
+			Py_INCREF(Py_False);
+			return Py_False;
+		}
 	}
 
-	xmlDoc *doc = xmlReadFile(satellitesFilename, NULL, 0);
+	xmlDoc *doc = xmlReadFile(satellitesFilename.c_str(), NULL, 0);
+
 	if (!doc)
 	{
-		eDebug("[eDVBDB] couldn't open %s!!", satellitesFilename);
+		eDebug("[eDVBDB] couldn't open satellites.xml - maybe corrupted!!");
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
@@ -1317,7 +1359,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 				inv = eDVBFrontendParametersSatellite::Inversion_Unknown;
 				pilot = eDVBFrontendParametersSatellite::Pilot_Unknown;
 				rolloff = eDVBFrontendParametersSatellite::RollOff_alpha_0_35;
-				is_id = NO_STREAM_ID_FILTER;
+				is_id = 0;//NO_STREAM_ID_FILTER;
 				pls_code = 1;
 				pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
 				tsid = -1;
@@ -1714,7 +1756,7 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 
 			Py_DECREF(tplist);
 		}
-		else if (ter_flags || ter_countrycode) 
+		else if (ter_flags || ter_countrycode)
 		{
 			if (ter_flags)
 			{
@@ -2031,21 +2073,6 @@ bool eDVBDB::isCrypted(const eServiceReference &ref)
 		if (it != m_services.end())
 		{
 			return it->second->isCrypted();
-		}
-	}
-	return false;
-}
-
-bool eDVBDB::hasCAID(const eServiceReference &ref, unsigned int caid)
-{
-	if (ref.type == eServiceReference::idDVB)
-	{
-		eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
-		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
-		if (it != m_services.end())
-		{
-			return std::find(it->second->m_ca.begin(), it->second->m_ca.end(),
-				(uint16_t)caid) != it->second->m_ca.end();
 		}
 	}
 	return false;

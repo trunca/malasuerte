@@ -419,6 +419,9 @@ class EPGSelection(Screen):
 						self.session.nav.RecordTimer.timeChanged(x)
 				simulTimerList = self.session.nav.RecordTimer.record(entry)
 				if simulTimerList is not None:
+#					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+#			self["key_green"].setText(_("Remove timer"))
+#			self.key_green_choice = self.REMOVE_TIMER
 					if not entry.repeated and not config.recording.margin_before.value and not config.recording.margin_after.value and len(simulTimerList) > 1:
 						change_time = False
 						conflict_begin = simulTimerList[1].begin
@@ -562,7 +565,7 @@ class EPGSelection(Screen):
 				isRecordEvent = True
 				break
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
-			self["key_green"].setText(_("Change timer"))
+			self["key_green"].setText(_("Remove timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
 			self["key_green"].setText(_("Add timer"))
