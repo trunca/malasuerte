@@ -680,6 +680,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self["key_green"] = Label(_("Save"))
 		self["key_yellow"] = Label()
 		self["key_blue"] = Label()
+		self["description"] = Label("")
 		self["actions"] = ActionMap(["SetupActions", "SatlistShortcutAction"],
 		{
 			"ok": self.keyOk,
@@ -695,6 +696,13 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.createConfigMode()
 		self.createSetup()
 		self.setTitle(_("Setup tuner") + " " + self.nim.input_name)
+		
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def selectionChanged(self):
+		self["description"].setText(self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or "")
 
 	def keyLeft(self):
 		if self.nim.isFBCLink() and self["config"].getCurrent() in (self.advancedLof, self.advancedConnected):
