@@ -355,12 +355,14 @@ public:
 		SIMILAR_BROADCASTINGS_SEARCH,
 		EXAKT_TITLE_SEARCH,
 		PARTIAL_TITLE_SEARCH,
+		PARTIAL_DESCRIPTION_SEARCH,
 		START_TITLE_SEARCH
 	};
 	enum {
 		CASE_CHECK,
 		NO_CASE_CHECK
 	};
+
 	PyObject *lookupEvent(SWIG_PYOBJECT(ePyObject) list, SWIG_PYOBJECT(ePyObject) convertFunc=(PyObject*)0);
 	PyObject *search(SWIG_PYOBJECT(ePyObject));
 
