@@ -3315,8 +3315,8 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 //     0 = search for similar broadcastings (SIMILAR_BROADCASTINGS_SEARCH)
 //     1 = search events with exactly title name (EXACT_TITLE_SEARCH)
 //     2 = search events with text in title name (PARTIAL_TITLE_SEARCH)
-//     3 = search events starting with title name (START_TITLE_SEARCH)
-//     4 = search events with text in description name (PARTIAL_DESCRIPTION_SEARCH)
+//     3 = search events with text in description name (PARTIAL_DESCRIPTION_SEARCH)
+//     4 = search events starting with title name (START_TITLE_SEARCH)
 //  when type is 0 (SIMILAR_BROADCASTINGS_SEARCH)
 //   the fourth is the servicereference string
 //   the fifth is the eventid
@@ -3584,10 +3584,10 @@ PyObject *eEPGCache::search(ePyObject arg)
 									{
 										if (!strncasecmp(contentptr, str, textlen))
 										{
-											eDebug("[eEPGCache] IC Debug: Content length %x, Content %s\n",content_len,contentptr);
+											// eDebug("[eEPGCache] IC Debug: Content length %x, Content %s\n",content_len,contentptr);
 											descr.push_back(it->first);
 											char buff[1000]={0};
-											eDebug("[eEPGCache] EIT data:\n");
+											// eDebug("[eEPGCache] EIT data:\n");
 			 								std::string tmp="";
 			 								int z=0;
 											for (lloop=0x0;lloop<(dbglen+EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2);lloop++)
@@ -3609,10 +3609,10 @@ PyObject *eEPGCache::search(ePyObject arg)
 									{
 										if (!memcmp(contentptr, str, textlen))
 										{
-											eDebug("[eEPGCache] CC Debug: Content length %x, Content %s\n",content_len,contentptr);
+											// eDebug("[eEPGCache] CC Debug: Content length %x, Content %s\n",content_len,contentptr);
 											descr.push_back(it->first);
 											char buff[1000]={0};
-											eDebug("[eEPGCache] EIT data:\n");
+											// eDebug("[eEPGCache] EIT data:\n");
 			 								std::string tmp="";
 			 								int z=0;
 											for (lloop=0x0;lloop<(dbglen+EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2);lloop++)
