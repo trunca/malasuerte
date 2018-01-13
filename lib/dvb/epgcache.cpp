@@ -14,6 +14,7 @@
 #include <sstream>
 #include <iomanip>
 #include <string>
+#include <regex>
 #include <time.h>
 #include <unistd.h>  // for usleep
 #include <sys/vfs.h> // for statfs
@@ -3324,7 +3325,8 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 //   the fourth is the search text
 //   the fifth is
 //     0 = case sensitive (CASE_CHECK)
-//     1 = case insensitive (NO_CASECHECK)
+//     1 = case insensitive (NO_CASE_CHECK)
+//     2 = regex search (REGEX_CHECK)
 
 PyObject *eEPGCache::search(ePyObject arg)
 {
@@ -3457,13 +3459,13 @@ PyObject *eEPGCache::search(ePyObject arg)
 					switch (querytype)
 					{
 						case 1:
-							eDebug("[eEPGCache] lookup events with '%s' as title (%s)", str, casetype?"ignore case":"case sensitive");
+							eDebug("[eEPGCache] lookup events with '%s' as title (%s)", str, casetypestr[casetype]);
 							break;
 						case 2:
-							eDebug("[eEPGCache] lookup events with '%s' in title (%s)", str, casetype?"ignore case":"case sensitive");
+							eDebug("[eEPGCache] lookup events with '%s' in title (%s)", str, casetypestr[casetype]);
 							break;
 						case 3:
-							eDebug("[eEPGCache] lookup events, title starting with '%s' (%s)", str, casetype?"ignore case":"case sensitive");
+							eDebug("[eEPGCache] lookup events, title starting with '%s' (%s)", str, casetypestr[casetype]);
 							break;
 					}
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
@@ -3500,7 +3502,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 									/* Do a "startswith" match by pretending the text isn't that long */
 									title_len = textlen;
 								}
-								if (casetype)
+								if (casetype == NO_CASE_CHECK)
 								{
 									while (title_len >= textlen)
 									{
@@ -3513,7 +3515,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 										titleptr++;
 									}
 								}
-								else
+								else if (casetype == CASE_CHECK)
 								{
 									while (title_len >= textlen)
 									{
@@ -3524,6 +3526,16 @@ PyObject *eEPGCache::search(ePyObject arg)
 										}
 										title_len--;
 										titleptr++;
+									}
+								}
+								else if (casetype == REGEX_CHECK)
+								{
+									regex pattern(str);
+									smatch match;
+									string input(titleptr,title_len);
+									if (regex_search(input.begin(),input.end(),match,pattern)
+									{
+										descr.push_back(it->first);
 									}
 								}
 							}
@@ -3552,7 +3564,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 					int textlen = PyString_Size(obj);
 #endif
 					int lloop=0;
-					eDebug("[eEPGCache] lookup events with '%s' in content (%s)", str, casetype?"ignore case":"case sensitive");
+					eDebug("[eEPGCache] lookup events with '%s' in content (%s)", str, casetypestr[casetype]);
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
 					{
 						singleLock s(cache_lock);
@@ -3574,20 +3586,23 @@ PyObject *eEPGCache::search(ePyObject arg)
 									contentptr = content.data();
 									content_len = content.length();
 								}
+								#ifdef DEBUG
 								int dbglen=content_len;
+								#endif
 								if (content_len < textlen)
 									/*Doesn't fit, so cannot match anything */
 									continue;
-								if (casetype)
+								if (casetype == NO_CASE_CHECK)
 								{
 									while (content_len >= textlen)
 									{
 										if (!strncasecmp(contentptr, str, textlen))
 										{
-											// eDebug("[eEPGCache] IC Debug: Content length %x, Content %s\n",content_len,contentptr);
 											descr.push_back(it->first);
+											#ifdef DEBUG
+											eDebug("[eEPGCache] IC Debug: Content length %x, Content %s\n",content_len,contentptr);
 											char buff[1000]={0};
-											// eDebug("[eEPGCache] EIT data:\n");
+											eDebug("[eEPGCache] EIT data:\n");
 			 								std::string tmp="";
 			 								int z=0;
 											for (lloop=0x0;lloop<(dbglen+EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2);lloop++)
@@ -3597,22 +3612,24 @@ PyObject *eEPGCache::search(ePyObject arg)
 												z++;
 											}
 											if (z>1) { eDebug(buff);}
+											#endif
 											break;
 										}
 										content_len--;
 										contentptr++;
 									}
 								}
-								else
+								else if (casetype == CASE_CHECK)
 								{
 									while (content_len >= textlen)
 									{
 										if (!memcmp(contentptr, str, textlen))
 										{
-											// eDebug("[eEPGCache] CC Debug: Content length %x, Content %s\n",content_len,contentptr);
 											descr.push_back(it->first);
+											#ifdef DEBUG
+											eDebug("[eEPGCache] CC Debug: Content length %x, Content %s\n",content_len,contentptr);
 											char buff[1000]={0};
-											// eDebug("[eEPGCache] EIT data:\n");
+											eDebug("[eEPGCache] EIT data:\n");
 			 								std::string tmp="";
 			 								int z=0;
 											for (lloop=0x0;lloop<(dbglen+EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2);lloop++)
@@ -3621,12 +3638,24 @@ PyObject *eEPGCache::search(ePyObject arg)
 												snprintf(&buff[z*3], sizeof(buff), "%02X ", data[lloop]);
 												z++;
 											}
+											if (z>1) { eDebug(buff);}
+											#endif
 											break;
 										}
 										content_len--;
 										contentptr++;
 									}
 								}
+								else if (casetype == REGEX_CHECK)
+								{
+									regex pattern(str);
+									smatch match;
+									string input(contentptr,content_len);
+									if (regex_search(input.begin(),input.end(),match,pattern)
+									{
+										descr.push_back(it->first);
+									}
+								}                               
 							}
 						}
 					}

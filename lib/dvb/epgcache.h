@@ -360,8 +360,11 @@ public:
 	};
 	enum {
 		CASE_CHECK,
-		NO_CASE_CHECK
+		NO_CASE_CHECK,
+		REGEX_CHECK 
 	};
+
+	static const char casetypestr[3][]={"ignore case","case sensitive","regex"}; 
 
 	PyObject *lookupEvent(SWIG_PYOBJECT(ePyObject) list, SWIG_PYOBJECT(ePyObject) convertFunc=(PyObject*)0);
 	PyObject *search(SWIG_PYOBJECT(ePyObject));
