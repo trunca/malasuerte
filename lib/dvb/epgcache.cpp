@@ -3328,6 +3328,27 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 //     1 = case insensitive (NO_CASE_CHECK)
 //     2 = regex search (REGEX_CHECK)
 
+std::string eEPGCache::casetypestr(int value)
+{
+	std::string result="";
+	switch (value)
+	{
+		case CASE_CHECK:
+			result="case sensitive";
+			break;
+		case NO_CASE_CHECK:
+			result="case insensitive";
+			break;
+		case REGEX_CHECK:
+			result="regex";
+			break;
+		default:
+			result="unknown";
+			break;
+	}
+	return result;
+}
+
 PyObject *eEPGCache::search(ePyObject arg)
 {
 	ePyObject ret;
@@ -3455,17 +3476,17 @@ PyObject *eEPGCache::search(ePyObject arg)
 					int textlen = PyString_GET_SIZE(obj);
 #else
 					int textlen = PyString_Size(obj);
-#endif
+#endif              
 					switch (querytype)
 					{
 						case 1:
-							eDebug("[eEPGCache] lookup events with '%s' as title (%s)", str, casetypestr[casetype]);
+							eDebug("[eEPGCache] lookup events with '%s' as title (%s)", str, casetypestr(casetype));
 							break;
 						case 2:
-							eDebug("[eEPGCache] lookup events with '%s' in title (%s)", str, casetypestr[casetype]);
+							eDebug("[eEPGCache] lookup events with '%s' in title (%s)", str, casetypestr(casetype));
 							break;
 						case 3:
-							eDebug("[eEPGCache] lookup events, title starting with '%s' (%s)", str, casetypestr[casetype]);
+							eDebug("[eEPGCache] lookup events, title starting with '%s' (%s)", str, casetypestr(casetype));
 							break;
 					}
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
@@ -3530,10 +3551,9 @@ PyObject *eEPGCache::search(ePyObject arg)
 								}
 								else if (casetype == REGEX_CHECK)
 								{
-									regex pattern(str);
-									smatch match;
-									string input(titleptr,title_len);
-									if (regex_search(input.begin(),input.end(),match,pattern)
+									std::regex pattern(str);
+									std::string input(titleptr,title_len);
+									if (regex_search(input.begin(),input.end(),pattern))
 									{
 										descr.push_back(it->first);
 									}
@@ -3564,7 +3584,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 					int textlen = PyString_Size(obj);
 #endif
 					int lloop=0;
-					eDebug("[eEPGCache] lookup events with '%s' in content (%s)", str, casetypestr[casetype]);
+					eDebug("[eEPGCache] lookup events with '%s' in content (%s)", str, casetypestr(casetype));
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
 					{
 						singleLock s(cache_lock);
@@ -3648,14 +3668,13 @@ PyObject *eEPGCache::search(ePyObject arg)
 								}
 								else if (casetype == REGEX_CHECK)
 								{
-									regex pattern(str);
-									smatch match;
-									string input(contentptr,content_len);
-									if (regex_search(input.begin(),input.end(),match,pattern)
+									std::regex pattern(str);
+									std::string input(contentptr,content_len);
+									if (regex_search(input.begin(),input.end(),pattern))
 									{
 										descr.push_back(it->first);
 									}
-								}                               
+								}
 							}
 						}
 					}

@@ -364,9 +364,8 @@ public:
 		REGEX_CHECK 
 	};
 
-	static const char casetypestr[3][]={"ignore case","case sensitive","regex"}; 
-
 	PyObject *lookupEvent(SWIG_PYOBJECT(ePyObject) list, SWIG_PYOBJECT(ePyObject) convertFunc=(PyObject*)0);
+	std::string casetypestr(int value);
 	PyObject *search(SWIG_PYOBJECT(ePyObject));
 
 	// eServiceEvent are parsed epg events.. it's safe to use them after cache unlock

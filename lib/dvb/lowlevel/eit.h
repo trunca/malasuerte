@@ -151,7 +151,6 @@ typedef struct eit_event_struct {
 	void setDescriptorsLoopLength(int dll) { descriptors_loop_length_hi = dll >> 8; descriptors_loop_length_lo = dll & 0xFF; };
 
 } eit_event_t;
-
 #define EIT_LOOP_SIZE 12
 
 struct eit_extended_descriptor_struct {
