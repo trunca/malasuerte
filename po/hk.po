@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 14:19+0200\n"
+"POT-Creation-Date: 2018-01-24 16:08+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -252,6 +252,11 @@ msgstr ""
 msgid "%Y-%m-%d %H:%M:%S"
 msgstr ""
 
+#. TRANSLATORS: full date representations short dayname daynum monthname long year in strftime() format! See 'man strftime'
+#, fuzzy
+msgid "%a %e %B %Y"
+msgstr "%d.%B %Y"
+
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%a %e/%m"
 msgstr ""
@@ -291,6 +296,10 @@ msgid_plural "%d files"
 msgstr[0] "%d file"
 msgstr[1] "%d files"
 
+#, fuzzy, python-format
+msgid "%d fps"
+msgstr "%d file"
+
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -303,6 +312,10 @@ msgstr "%d 正在後臺運行!"
 
 #, python-format
 msgid "%d kB"
+msgstr ""
+
+#, python-format
+msgid "%d kB/s"
 msgstr ""
 
 #, python-format
@@ -414,6 +427,9 @@ msgstr ""
 
 #, python-format
 msgid "%s:%s"
+msgstr ""
+
+msgid "(ZAP as PiP)"
 msgstr ""
 
 msgid "(ZAP)"
@@ -786,6 +802,9 @@ msgstr ""
 msgid "AC3 downmix"
 msgstr "AC3 縮減混音"
 
+msgid "ACQUIRING TSID/ONID"
+msgstr ""
+
 msgid "AGC:"
 msgstr ""
 
@@ -920,6 +939,12 @@ msgstr "添加錄影 (當前事件停止後)"
 msgid "Adding schedule..."
 msgstr ""
 
+msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move the dish from one satellite to another satellite."
+msgstr ""
+
+msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move to another satellite."
+msgstr ""
+
 msgid "Adjust 3D settings"
 msgstr ""
 
@@ -1001,6 +1026,9 @@ msgid "All satellites 4 (USALS)"
 msgstr "所有衛星"
 
 msgid "Allocate"
+msgstr ""
+
+msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorised dishes) to save setting up the same LNB multiple times."
 msgstr ""
 
 msgid "Allocate unused memory index"
@@ -1280,7 +1308,6 @@ msgstr "作者:"
 msgid "Authoring mode"
 msgstr "創作模式"
 
-#. TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 msgid "Auto"
 msgstr "自動"
 
@@ -1894,6 +1921,12 @@ msgstr ""
 msgid "China"
 msgstr ""
 
+msgid "Chinese - Simplified"
+msgstr ""
+
+msgid "Chinese - Traditional"
+msgstr ""
+
 msgid "Chipset: "
 msgstr ""
 
@@ -2316,6 +2349,9 @@ msgstr ""
 msgid "Configure the way in which the receiver changes channels."
 msgstr ""
 
+msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
+msgstr ""
+
 msgid "Configure where completed timers show up in the timer list."
 msgstr ""
 
@@ -2395,6 +2431,10 @@ msgid "Connect to a wireless network"
 msgstr ""
 
 #, fuzzy
+msgid "Connected"
+msgstr "已連接!"
+
+#, fuzzy
 msgid "Connected satellites"
 msgstr "連接的用戶端"
 
@@ -2415,8 +2455,18 @@ msgstr ""
 msgid "Constellation & FFT mode"
 msgstr "星位"
 
+msgid "Consult your Unicable device spec sheet for this information."
+msgstr ""
+
+msgid "Consult your motor's spec sheet for this information, or leave the default setting."
+msgstr ""
+
 #, fuzzy
 msgid "Contact Info"
+msgstr "CCcam資訊"
+
+#, fuzzy
+msgid "Contact info"
 msgstr "CCcam資訊"
 
 msgid "Content Encoding"
@@ -2487,6 +2537,10 @@ msgstr ""
 #, python-format
 msgid "Could not record due to invalid service %s"
 msgstr ""
+
+#, fuzzy
+msgid "Country"
+msgstr "國家列表"
 
 msgid "Create"
 msgstr "創建"
@@ -3003,6 +3057,12 @@ msgstr ""
 msgid "Djibouti"
 msgstr "關於"
 
+msgid "Do center DVB subs on this service"
+msgstr ""
+
+msgid "Do not center DVB subs on this service"
+msgstr ""
+
 msgid "Do not change"
 msgstr ""
 
@@ -3096,6 +3156,10 @@ msgstr " 是否手動掃描其他頻道?"
 
 msgid "Do you want to install a channel list?"
 msgstr ""
+
+#, fuzzy
+msgid "Do you want to install plugins"
+msgstr " 是否安裝套裝軟體:\n"
 
 msgid "Do you want to install the package:\n"
 msgstr " 是否安裝套裝軟體:\n"
@@ -3240,6 +3304,10 @@ msgstr "動態對比度"
 msgid "E"
 msgstr "E"
 
+#, fuzzy
+msgid "ECM Info"
+msgstr "ECM資訊"
+
 msgid "ENABLE DISABLE PLUGIN IF U WANT IT"
 msgstr ""
 
@@ -3290,6 +3358,10 @@ msgstr "編輯標題"
 
 msgid "Edit chapters of current title"
 msgstr "編輯章節當前標題"
+
+#, fuzzy
+msgid "Edit selection"
+msgstr "計時器選擇"
 
 msgid "Edit settings"
 msgstr "編輯設定"
@@ -3411,6 +3483,9 @@ msgstr ""
 msgid "Enable teletext caching"
 msgstr ""
 
+msgid "Enable this setting if your aerial system needs power"
+msgstr ""
+
 #, fuzzy
 msgid "Enable timer conflict detection"
 msgstr "啟用服務限制"
@@ -3466,6 +3541,10 @@ msgstr ""
 msgid "English"
 msgstr "英語"
 
+#, fuzzy, python-format
+msgid "Enigma (re)starts: %d\n"
+msgstr "Enigma 2 終止"
+
 #, python-format
 msgid "Enigma2 Build: %s"
 msgstr ""
@@ -3477,6 +3556,12 @@ msgstr "Enigma 2 終止"
 msgid "Enter PIN"
 msgstr ""
 
+msgid "Enter if you are in the east or west hemisphere."
+msgstr ""
+
+msgid "Enter if you are north or south of the equator."
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr "進入主功能表..."
 
@@ -3486,8 +3571,29 @@ msgstr ""
 msgid "Enter pin code"
 msgstr ""
 
+msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
+msgstr ""
+
+msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
+msgstr ""
+
+msgid "Enter the number stored in the positioner that corresponds to this satellite."
+msgstr ""
+
 msgid "Enter the service pin"
 msgstr "輸入密碼"
+
+msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
+msgstr ""
+
+msgid "Enter your current longitude. This is the number of degrees you are from zero meridian as a decimal."
+msgstr ""
+
+msgid "Enter your high band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgstr ""
+
+msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgstr ""
 
 #, fuzzy
 msgid "Equal to"
@@ -3714,6 +3820,9 @@ msgstr ""
 msgid "F1/F3/F4/F4-TURBO"
 msgstr ""
 
+msgid "FAILED"
+msgstr ""
+
 #, fuzzy
 msgid "FBC SCR (Unicable/JESS)"
 msgstr "Unicable Matrix"
@@ -3920,6 +4029,9 @@ msgstr ""
 #, fuzzy
 msgid "Force ToneBurst"
 msgstr "Toneburst"
+
+msgid "Force legacy signal stats"
+msgstr ""
 
 msgid "Format"
 msgstr "格式化"
@@ -4451,6 +4563,9 @@ msgstr "匈牙利語"
 msgid "I"
 msgstr ""
 
+msgid "IDLE"
+msgstr ""
+
 msgid "IP address"
 msgstr ""
 
@@ -4484,6 +4599,24 @@ msgstr ""
 msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
+msgid "If enabled, display shows 12 chars instead 8, but in latin-1/translit only."
+msgstr ""
+
+msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
+msgstr ""
+
+msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
+msgstr ""
+
+msgid "If you are using a Circular polarised LNB select 'yes', otherwise select 'no'."
+msgstr ""
+
+msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
+msgstr ""
+
+msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
+msgstr ""
+
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
@@ -4497,6 +4630,15 @@ msgid ""
 "Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr "如果您的電視機有亮度或對比度增強項，請關閉它。如果裏面有標為“動態”的專案，將其設定為標準。調整背光等級的值以符合您的口味。將電視機的對比度盡可能地降低。然後盡可能將亮度設定調低，但請確保最下面的兩個灰色能夠分辨出來。現在，不必關心亮度的色調，它們將在接下來的步驟中設定。如果您對結果感到滿意，按OK 。"
+
+msgid "Ignore DVB-C namespace sub network"
+msgstr ""
+
+msgid "Ignore DVB-S namespace sub network"
+msgstr ""
+
+msgid "Ignore DVB-T namespace sub network"
+msgstr ""
 
 msgid "Ignore conflict"
 msgstr ""
@@ -4835,8 +4977,7 @@ msgstr ""
 msgid "Jump to previous marked position"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-msgid "Just scale"
+msgid "KA-SAT"
 msgstr ""
 
 msgid "Kazakhstan"
@@ -4959,6 +5100,9 @@ msgid "Latvian"
 msgstr "拉脫維亞"
 
 msgid "Leave DVD player?"
+msgstr ""
+
+msgid "Leave this set to 'yes' unless you fully understand why you are adjusting it."
 msgstr ""
 
 msgid "Lebanon"
@@ -5232,10 +5376,6 @@ msgstr "手動轉發器掃描"
 msgid "Manufacturer"
 msgstr "製造商"
 
-#, fuzzy
-msgid "Manufacturer info"
-msgstr "製造商"
-
 msgid "Margin after recording (minutes)"
 msgstr ""
 
@@ -5327,7 +5467,13 @@ msgstr "墨西哥"
 msgid "Micronesia (Federated States of)"
 msgstr ""
 
-msgid "MiniTV"
+msgid "MiniTV - video0"
+msgstr ""
+
+msgid "MiniTV - video0+video1"
+msgstr ""
+
+msgid "MiniTV - video1"
 msgstr ""
 
 msgid "MiniTV framerate"
@@ -5336,7 +5482,13 @@ msgstr ""
 msgid "MiniTV on frontpanel"
 msgstr ""
 
-msgid "MiniTV with OSD"
+msgid "MiniTV with OSD - video0+fb"
+msgstr ""
+
+msgid "MiniTV with OSD - video0+video1+fb"
+msgstr ""
+
+msgid "MiniTV with OSD - video1+fb"
 msgstr ""
 
 #, python-format
@@ -5357,6 +5509,10 @@ msgstr ""
 msgctxt "Video output mode"
 msgid "Mode"
 msgstr ""
+
+#, fuzzy
+msgid "Model"
+msgstr "型號:"
 
 msgid "Model: "
 msgstr ""
@@ -5803,6 +5959,9 @@ msgstr ""
 msgid "No Connection"
 msgstr "未連接"
 
+msgid "No ECMPids available (FTA Service)"
+msgstr ""
+
 msgid "No HDD found or HDD not initialized!"
 msgstr "未找到硬碟或硬碟未初始化！"
 
@@ -5817,9 +5976,6 @@ msgstr ""
 
 msgid "No backup needed"
 msgstr "不需要備份"
-
-msgid "No cable tuner found!"
-msgstr ""
 
 msgid ""
 "No data on transponder!\n"
@@ -5962,10 +6118,6 @@ msgstr "否, 稍後手動掃描."
 msgid "None"
 msgstr "無"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "非線性"
-
 msgid "Norfolk Island"
 msgstr ""
 
@@ -5991,10 +6143,6 @@ msgstr "未啟用"
 
 msgid "Not associated"
 msgstr ""
-
-#, fuzzy
-msgid "Not configured"
-msgstr "測驗通過"
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
@@ -6027,10 +6175,6 @@ msgstr ""
 
 msgid "Note: when enabled, and you do want standby mode after wake up, set option 'Startup to Standby' as 'No, except Wakeup timer'."
 msgstr ""
-
-#, fuzzy
-msgid "Nothing connected"
-msgstr "從未連接"
 
 msgid ""
 "Nothing to scan!\n"
@@ -6075,8 +6219,8 @@ msgstr "OK, 引導我的升級過程"
 msgid "ONID"
 msgstr ""
 
-msgid "OSD"
-msgstr "OSD"
+msgid "OSD - fb"
+msgstr ""
 
 msgid "OSD 3D setup"
 msgstr ""
@@ -6111,6 +6255,9 @@ msgstr ""
 msgid "On end of movie (as menu)"
 msgstr ""
 
+msgid "On valid ONIDs, ignore frequency sub network part"
+msgstr ""
+
 #, fuzzy
 msgid "Once per day"
 msgstr "每天"
@@ -6129,15 +6276,27 @@ msgstr "顯示資訊"
 msgid "Online = Download a image and flash it"
 msgstr ""
 
+msgid "Only change this setting if you are using a Unicable device that has been reprogrammed with a custom programmer. For further information check with the person that reprogrammed the device."
+msgstr ""
+
 msgid "Only extensions."
 msgstr "僅增加部分."
 
 msgid "Only free scan"
 msgstr ""
 
+msgid "Only move the dish quickly after this hour."
+msgstr ""
+
+msgid "Only move the dish quickly before this hour."
+msgstr ""
+
 #, fuzzy
 msgid "Only on startup"
 msgstr "啟動時載入種子:"
+
+msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
+msgstr ""
 
 #, fuzzy
 msgid "Open Timerlist..."
@@ -6302,6 +6461,7 @@ msgid "Palestine, State of"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
 msgid "Pan&scan"
 msgstr ""
 
@@ -6377,9 +6537,6 @@ msgid "Peru"
 msgstr ""
 
 msgid "Philippines"
-msgstr ""
-
-msgid "Phone"
 msgstr ""
 
 msgid "PiP setup"
@@ -6702,6 +6859,10 @@ msgstr "流覽插件"
 msgid "Plugin browser"
 msgstr "流覽插件"
 
+#, fuzzy
+msgid "Plugin install"
+msgstr "反安裝"
+
 msgid "Plugin manager activity information"
 msgstr "插件管理活動資訊"
 
@@ -6779,12 +6940,18 @@ msgstr "極軸設定(DiSEqC 1.2)"
 msgid "Positioner setup log"
 msgstr "極軸設定(DiSEqC 1.2)"
 
+msgid "Power management. Consult your receiver's manual for more information."
+msgstr ""
+
 #, fuzzy
 msgid "Power on display"
 msgstr "反向顯示"
 
 msgid "Power threshold in mA"
 msgstr "功率閾值(mA)"
+
+msgid "Power threshold. Consult your receiver's manual for more information."
+msgstr ""
 
 #, fuzzy
 msgid "PowerMenu"
@@ -6875,6 +7042,10 @@ msgstr "按OK鍵獲取 %s 詳細說明"
 
 msgid "Press OK to scan"
 msgstr "按OK鍵開始掃描."
+
+#, fuzzy
+msgid "Press OK to select a group of satellites to configure in one block."
+msgstr "按OK鍵選擇."
 
 msgid "Press OK to select a provider."
 msgstr ""
@@ -7878,6 +8049,45 @@ msgstr ""
 msgid "Select"
 msgstr "選擇"
 
+msgid "Select '1.0' for standard committed switches, '1.1' for uncommitted switches, and '1.2' for systems using a positioner."
+msgstr ""
+
+msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
+msgstr ""
+
+msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
+msgstr ""
+
+msgid "Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."
+msgstr ""
+
+msgid "Select 'polarisation' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
+msgstr ""
+
+msgid "Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."
+msgstr ""
+
+msgid "Select 'yes' if this tuner is connected to the Unicable device through another tuner, otherwise select 'no'."
+msgstr ""
+
+msgid "Select 'yes' to choose what bands or step sizes will be scanned."
+msgstr ""
+
+#, python-format
+msgid "Select 'yes' to include %s multiplexes in your search."
+msgstr ""
+
+#, python-format
+msgid "Select 'yes' to include symbol rate %s in your search."
+msgstr ""
+
+#, python-format
+msgid "Select 'yes' to include the %s band in your search."
+msgstr ""
+
+msgid "Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Select Bootoption: %s"
 msgstr "選擇位置"
@@ -7892,11 +8102,18 @@ msgstr ""
 msgid "Select Channel"
 msgstr "選擇Image"
 
+msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
+msgstr ""
+
 msgid "Select HDD"
 msgstr "選擇硬碟"
 
 #, fuzzy, python-format
 msgid "Select Image: %s"
+msgstr "選擇Softcam:"
+
+#, fuzzy
+msgid "Select Image: STARTUP_1"
 msgstr "選擇Softcam:"
 
 #, fuzzy
@@ -7970,6 +8187,20 @@ msgid "Select files/folders to backup"
 msgstr "選擇要備份的檔/目錄"
 
 #, fuzzy
+msgid "Select function"
+msgstr "選擇位置"
+
+#, fuzzy
+msgid "Select horizontal resolution:"
+msgstr "選擇位置"
+
+msgid "Select how quickly the dish should move between satellites."
+msgstr ""
+
+msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
+msgstr ""
+
+#, fuzzy
 msgid "Select how your box will upgrade."
 msgstr "選擇您的選擇."
 
@@ -8033,7 +8264,52 @@ msgstr ""
 msgid "Select the Swap File Size:"
 msgstr "設定過濾類型"
 
+msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
+msgstr ""
+
+msgid "Select the format of your Unicable device. Choices are 'SCR Unicable' (Unicable I format), or 'SCR JESS' (Unicable II format)."
+msgstr ""
+
+msgid "Select the manufacturer of your Unicable device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgstr ""
+
+msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgstr ""
+
 msgid "Select the movie path"
+msgstr ""
+
+msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr ""
+
+msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr ""
+
+msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr ""
+
+msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr ""
+
+msgid "Select the satellite you want to configure. Once that satellite is configured you can select and configure other satellites that will be accessed using this same tuner."
+msgstr ""
+
+msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
+msgstr ""
+
+msgid "Select the tuner that controls the motorised dish."
+msgstr ""
+
+msgid "Select the tuner that this loopthrough depends on."
+msgstr ""
+
+msgid "Select the tuner to which the signal cable of the Unicable device is connected."
+msgstr ""
+
+msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'user defined'."
+msgstr ""
+
+msgid "Select the type of Unicable device you are using."
 msgstr ""
 
 msgid "Select upgrade source"
@@ -8052,13 +8328,26 @@ msgid "Select wireless network"
 msgstr "選擇無線網路"
 
 #, fuzzy
+msgid "Select your ATSC provider."
+msgstr "供應商"
+
+#, fuzzy
 msgid "Select your LCD clock and press OK to activate the selected clock."
 msgstr "按OK啟動所選皮膚."
 
 msgid "Select your Skin"
 msgstr ""
 
+msgid "Select your country. If not available select 'all'."
+msgstr ""
+
+msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
+msgstr ""
+
 msgid "Select your provider, and press OK to start the scan"
+msgstr ""
+
+msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
 msgstr ""
 
 #, fuzzy
@@ -8075,6 +8364,12 @@ msgstr "單個衛星"
 #, fuzzy
 msgid "Selecting satellites 2 (USALS)"
 msgstr "單個衛星"
+
+msgid "Selecting this option allows you to configure a group of satellites in one block."
+msgstr ""
+
+msgid "Send 'sourceactive' before zap timers"
+msgstr ""
 
 msgid "Send DiSEqC"
 msgstr "發送DiSEqC命令"
@@ -8125,6 +8420,10 @@ msgstr "頻道已添加到選定的自定義組."
 
 msgid "Service info"
 msgstr ""
+
+#, fuzzy
+msgid "Service info - ECM Info"
+msgstr "頻道未找到"
 
 msgid "Service info - service & PIDs"
 msgstr ""
@@ -8208,6 +8507,9 @@ msgid "Set limits"
 msgstr "設定極限"
 
 msgid "Set pin code persistent"
+msgstr ""
+
+msgid "Set sequence repeats if your aerial system requires this. Normally if the aerial system has been configured correctly sequence repeats will not be necessary. If yours does, recheck you have command order set correctly."
 msgstr ""
 
 #, fuzzy
@@ -8618,9 +8920,6 @@ msgstr "簡易的標題 (更好的相容性)"
 #, fuzzy
 msgid "Simple zoom"
 msgstr "簡易"
-
-msgid "Simplified Chinese"
-msgstr "簡體中文"
 
 msgid "Simulate (no write)"
 msgstr ""
@@ -9107,10 +9406,6 @@ msgstr "停止"
 msgid "Storage media"
 msgstr "啟用 /媒體"
 
-#, fuzzy
-msgid "Store"
-msgstr "恢復"
-
 msgid "Store at index"
 msgstr ""
 
@@ -9128,6 +9423,16 @@ msgstr ""
 
 msgid "Streaming clients info"
 msgstr ""
+
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+msgid "Stretch linear"
+msgstr ""
+
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#, fuzzy
+msgid "Stretch nonlinear"
+msgstr "非線性"
 
 msgid "Stripes"
 msgstr ""
@@ -9362,6 +9667,9 @@ msgid "TSID"
 msgstr ""
 
 msgid "TUNER:"
+msgstr ""
+
+msgid "TUNING"
 msgstr ""
 
 msgid "TV physical address report"
@@ -9684,10 +9992,20 @@ msgstr ""
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr ""
 
+#, python-format
+msgid "This field allows you to search an additional symbol rate up to %s."
+msgstr ""
+
 msgid ""
 "This info is for developers only.\n"
 "It is not important for a normal user.\n"
 "Please - do not panic on any displayed suspicious information!"
+msgstr ""
+
+msgid "This is a multitype tuner. Available options depend on the hardware. Cable and terrestrial cannot be configured at the same time. If you want to use as cable + satellite or terrestrial + satellite, configure cable/terrestrial first and then save. Re-open and configure again as satellite."
+msgstr ""
+
+msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -9797,6 +10115,15 @@ msgstr "這個插件將要被移除."
 
 #, python-format
 msgid "This receiver cannot decode %s streams!"
+msgstr ""
+
+msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
+msgstr ""
+
+msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum."
+msgstr ""
+
+msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
 msgstr ""
 
 msgid ""
@@ -9953,9 +10280,6 @@ msgstr ""
 msgid "Today"
 msgstr "今天"
 
-msgid "Toggle Extra Keys"
-msgstr ""
-
 msgid "Toggle HDMI In"
 msgstr ""
 
@@ -10008,9 +10332,6 @@ msgstr ""
 
 msgid "Track"
 msgstr "軌道"
-
-msgid "Traditional Chinese"
-msgstr "繁體中文"
 
 #, fuzzy
 msgid "Transcode"
@@ -10084,10 +10405,6 @@ msgid "Tuner"
 msgstr "調諧器"
 
 #, fuzzy
-msgid "Tuner "
-msgstr "調諧器"
-
-#, fuzzy
 msgid "Tuner Configuration"
 msgstr "調諧器配置"
 
@@ -10110,9 +10427,9 @@ msgstr "調諧器資訊"
 msgid "Tuner slot"
 msgstr ""
 
-#, python-format
-msgid "Tuner status %s"
-msgstr ""
+#, fuzzy
+msgid "Tuner status:"
+msgstr "計時器資訊:"
 
 msgid "Tuner type"
 msgstr ""
@@ -10161,6 +10478,9 @@ msgstr "類型"
 msgid "Type of scan"
 msgstr "掃描類型"
 
+msgid "UNKNOWN"
+msgstr ""
+
 msgid "URL"
 msgstr ""
 
@@ -10169,6 +10489,9 @@ msgstr ""
 
 msgid "USALS"
 msgstr "USALS"
+
+msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
+msgstr ""
 
 msgid "USALS calibration"
 msgstr ""
@@ -10211,6 +10534,10 @@ msgstr ""
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr ""
 
+#, fuzzy
+msgid "Undefined"
+msgstr "用戶定義"
+
 msgid "Undo install"
 msgstr "撤銷安裝"
 
@@ -10241,7 +10568,7 @@ msgstr ""
 msgid "United Arab Emirates"
 msgstr "USA"
 
-msgid "United Kingdom of Great Britain and Northern Ireland"
+msgid "United Kingdom"
 msgstr ""
 
 msgid "United States Minor Outlying Islands"
@@ -10326,6 +10653,9 @@ msgstr "OLED設定"
 msgid "Use"
 msgstr "使用"
 
+msgid "Use 12 characters display mode"
+msgstr ""
+
 msgid "Use CI assignment for detection of available services."
 msgstr ""
 
@@ -10361,6 +10691,9 @@ msgstr ""
 
 msgid "Use a gateway"
 msgstr "使用閘道"
+
+msgid "Use as PiP if possible"
+msgstr ""
 
 #, fuzzy
 msgid "Use circular LNB"
@@ -10615,6 +10948,10 @@ msgstr ""
 msgid "Virtual keyboard"
 msgstr ""
 
+#, fuzzy
+msgid "Visual impaired commentary"
+msgstr "禁用家長控制"
+
 msgid "Voltage mode"
 msgstr "極化方式"
 
@@ -10716,6 +11053,14 @@ msgid "Watch movies..."
 msgstr ""
 
 msgid "Watch recordings..."
+msgstr ""
+
+#, python-format
+msgid ""
+"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+"Please send the logfile %senigma2_crash_xxxxxx.log to www.teamblue.tech.\n"
+"Your receiver restarts in 10 seconds!\n"
+"Component: enigma2"
 msgstr ""
 
 msgid "Weather GigaBlue Pax"
@@ -10884,9 +11229,6 @@ msgid "When enabled, external subtitles will be always turned on for playback mo
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
-msgstr ""
-
-msgid "When enabled, graphical DVB subtitles will be centered horizontally."
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
@@ -11343,6 +11685,12 @@ msgstr ""
 msgid "Your network configuration has been activated."
 msgstr "您的網路配置已被啟動."
 
+msgid "Your receiver can use SCPC optimized search range. Consult your receiver's manual for more information."
+msgstr ""
+
+msgid "Your receiver can use tone amplitude. Consult your receiver's manual for more information."
+msgstr ""
+
 msgid "Your receiver does not have an internet connection"
 msgstr ""
 
@@ -11435,6 +11783,14 @@ msgstr ""
 #, fuzzy
 msgid "Zap-History Browser"
 msgstr "目錄流覽"
+
+#, python-format
+msgid "Zapped to timer service %s as PiP!"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "Zapped to timer service %s!"
+msgstr "編輯自動計時器服務"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
 msgstr ""
@@ -12662,6 +13018,9 @@ msgstr ""
 msgid "true"
 msgstr ""
 
+msgid "type"
+msgstr ""
+
 msgid "unavailable"
 msgstr "不可用"
 
@@ -13667,9 +14026,6 @@ msgstr "轉自"
 #~ msgid "Connected to Fritz!Box!"
 #~ msgstr "連接到Dreambox!"
 
-#~ msgid "Connected!"
-#~ msgstr "已連接!"
-
 #~ msgid "Connecting to Fritz!Box..."
 #~ msgstr "連接到Dreambox..."
 
@@ -13696,9 +14052,6 @@ msgstr "轉自"
 
 #~ msgid "Count user"
 #~ msgstr "用戶數"
-
-#~ msgid "Country List"
-#~ msgstr "國家列表"
 
 #~ msgid "CrashlogAutoSubmit"
 #~ msgstr "Crashlog自動提交"
@@ -13893,9 +14246,6 @@ msgstr "轉自"
 #~ msgid "Disable crashlog reporting"
 #~ msgstr "禁用crashlog報告"
 
-#~ msgid "Disable parental control"
-#~ msgstr "禁用家長控制"
-
 #~ msgid "Discard changes and close plugin"
 #~ msgstr "關閉插件而不保存更改"
 
@@ -14081,14 +14431,8 @@ msgstr "轉自"
 #~ msgid "EXIT key in movie mode"
 #~ msgstr "EXIT鍵在電影模式"
 
-#~ msgid "Ecm Info"
-#~ msgstr "ECM資訊"
-
 #~ msgid "Edit AutoTimer filters"
 #~ msgstr "編輯自動計時器過濾"
-
-#~ msgid "Edit AutoTimer services"
-#~ msgstr "編輯自動計時器服務"
 
 #~ msgid "Edit Entry"
 #~ msgstr "編輯專案"
@@ -14915,6 +15259,10 @@ msgstr "轉自"
 #~ msgid "Manufactur: "
 #~ msgstr "製造商: "
 
+#, fuzzy
+#~ msgid "Manufacturer info"
+#~ msgstr "製造商"
+
 #~ msgid "Mar"
 #~ msgstr "3月"
 
@@ -15243,6 +15591,10 @@ msgstr "轉自"
 #~ msgid "Nonprofits & Activism"
 #~ msgstr "非盈利組織 & 行動組織"
 
+#, fuzzy
+#~ msgid "Not configured"
+#~ msgstr "測驗通過"
+
 #~ msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
 #~ msgstr "磁碟空間不足. 請釋放一部分磁碟空間後重試. (需要 %d MB,只有 %d MB 可用)"
 
@@ -15254,6 +15606,10 @@ msgstr "轉自"
 
 #~ msgid "Not necessary,if this box connect to another"
 #~ msgstr "沒有必要,如果這個盒子連接到其他的"
+
+#, fuzzy
+#~ msgid "Nothing connected"
+#~ msgstr "從未連接"
 
 #~ msgid "Nov"
 #~ msgstr "11月"
@@ -15284,6 +15640,9 @@ msgstr "轉自"
 
 #~ msgid "OK=Selection"
 #~ msgstr "OK=選擇"
+
+#~ msgid "OSD"
+#~ msgstr "OSD"
 
 #~ msgid "OSD Settings"
 #~ msgstr "OSD 設定"
@@ -16155,9 +16514,6 @@ msgstr "轉自"
 #~ msgid "Service delay"
 #~ msgstr "頻道延遲"
 
-#~ msgid "Service not found"
-#~ msgstr "頻道未找到"
-
 #~ msgid "Serviceinfo"
 #~ msgstr "頻道資訊"
 
@@ -16313,6 +16669,9 @@ msgstr "轉自"
 
 #~ msgid "Signal Strength"
 #~ msgstr "信號強度"
+
+#~ msgid "Simplified Chinese"
+#~ msgstr "簡體中文"
 
 #~ msgid "Single transponder"
 #~ msgstr "單個轉發器"
@@ -16537,6 +16896,10 @@ msgstr "轉自"
 
 #~ msgid "Stoptime"
 #~ msgstr "停止時間"
+
+#, fuzzy
+#~ msgid "Store"
+#~ msgstr "恢復"
 
 #~ msgid "Stream-Traffic"
 #~ msgstr "碼流資訊"
@@ -16861,9 +17224,6 @@ msgstr "轉自"
 #~ msgid "Timer View..."
 #~ msgstr "計時器檢視..."
 
-#~ msgid "Timer status:"
-#~ msgstr "計時器資訊:"
-
 #~ msgid "Timeshift path..."
 #~ msgstr "時光平移路徑..."
 
@@ -16893,6 +17253,9 @@ msgstr "轉自"
 #~ msgid "Top rated"
 #~ msgstr "最高評分"
 
+#~ msgid "Traditional Chinese"
+#~ msgstr "繁體中文"
+
 #~ msgid "Transmission Mode"
 #~ msgstr "傳輸模式"
 
@@ -16914,6 +17277,10 @@ msgstr "轉自"
 
 #~ msgid "Trying to download the Youtube search results. Please wait..."
 #~ msgstr "要下載YouTube上的搜索結果.請稍候..."
+
+#, fuzzy
+#~ msgid "Tuner "
+#~ msgstr "調諧器"
 
 #~ msgid "Tuner Slot"
 #~ msgstr "調諧器插槽"
