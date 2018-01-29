@@ -46,10 +46,8 @@ class Satfinder(ScanSetup, ServiceScan):
 
 		ScanSetup.__init__(self, session)
 		self.setTitle(_("Signal Finder"))
-		self["introduction"].setText(_("Press OK to scan"))
 		self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
-		self["key_red"] = Label(_("Cancel"))
-		self["key_green"] = Label(_("Scan"))
+		self["key_red"] = Label(_("Exit"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
