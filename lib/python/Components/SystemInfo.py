@@ -2,7 +2,6 @@ from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck, pathExists, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getMachineBuild
-import os
 
 SystemInfo = {}
 
