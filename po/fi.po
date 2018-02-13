@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 14:19+0200\n"
+"POT-Creation-Date: 2018-01-24 16:08+0100\n"
 "PO-Revision-Date: 2015-01-29 17:40+0200\n"
 "Last-Translator: arn354 <arn354@email.de>\n"
 "Language-Team: none\n"
@@ -277,6 +277,11 @@ msgstr "%d-%b-%Y %-H:%M"
 msgid "%Y-%m-%d %H:%M:%S"
 msgstr "%d-%b-%Y %-H:%M"
 
+#. TRANSLATORS: full date representations short dayname daynum monthname long year in strftime() format! See 'man strftime'
+#, fuzzy
+msgid "%a %e %B %Y"
+msgstr "%A %e. %Bta %Y"
+
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%a %e/%m"
 msgstr "%a %e.%-m"
@@ -317,6 +322,10 @@ msgid_plural "%d files"
 msgstr[0] "%d tiedosto"
 msgstr[1] "%d tiedostoa"
 
+#, fuzzy, python-format
+msgid "%d fps"
+msgstr "%d tiedosto"
+
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -330,6 +339,10 @@ msgstr "%d työ on taustalla käynnissä!"
 
 #, python-format
 msgid "%d kB"
+msgstr ""
+
+#, python-format
+msgid "%d kB/s"
 msgstr ""
 
 #
@@ -448,6 +461,9 @@ msgstr "%s/%s: %s"
 
 #, python-format
 msgid "%s:%s"
+msgstr ""
+
+msgid "(ZAP as PiP)"
 msgstr ""
 
 #
@@ -865,6 +881,9 @@ msgstr ""
 msgid "AC3 downmix"
 msgstr "AC3 muunnos stereoksi"
 
+msgid "ACQUIRING TSID/ONID"
+msgstr ""
+
 msgid "AGC:"
 msgstr ""
 
@@ -1030,6 +1049,12 @@ msgstr ""
 msgid "Adding schedule..."
 msgstr ""
 
+msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move the dish from one satellite to another satellite."
+msgstr ""
+
+msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move to another satellite."
+msgstr ""
+
 msgid "Adjust 3D settings"
 msgstr "Säädä 3D-asetuksia"
 
@@ -1122,6 +1147,9 @@ msgstr ""
 
 msgid "Allocate"
 msgstr "Varaa"
+
+msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorised dishes) to save setting up the same LNB multiple times."
+msgstr ""
 
 msgid "Allocate unused memory index"
 msgstr "Varaa vapaa muisti-indeksi"
@@ -1443,7 +1471,6 @@ msgid "Authoring mode"
 msgstr "Toimintatapa"
 
 #
-#. TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 msgid "Auto"
 msgstr "Automaattinen"
 
@@ -2127,6 +2154,12 @@ msgstr ""
 msgid "China"
 msgstr ""
 
+msgid "Chinese - Simplified"
+msgstr ""
+
+msgid "Chinese - Traditional"
+msgstr ""
+
 msgid "Chipset: "
 msgstr ""
 
@@ -2598,6 +2631,9 @@ msgstr "Määrittää video ulostulon tyypin (tai resoluution)."
 msgid "Configure the way in which the receiver changes channels."
 msgstr "Määrittää kuinka vastaanotin vaihtaa kanavia."
 
+msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
+msgstr ""
+
 msgid "Configure where completed timers show up in the timer list."
 msgstr "Määrittää missä jo päättyneet ajastukset näytetään ajastuslistalla."
 
@@ -2686,6 +2722,10 @@ msgstr "Yhdistä"
 msgid "Connect to a wireless network"
 msgstr "Yhdistä WLAN-verkkoon"
 
+#, fuzzy
+msgid "Connected"
+msgstr "Yhdistetty!"
+
 msgid "Connected satellites"
 msgstr ""
 
@@ -2709,9 +2749,20 @@ msgstr ""
 msgid "Constellation & FFT mode"
 msgstr "Modulaatio"
 
+msgid "Consult your Unicable device spec sheet for this information."
+msgstr ""
+
+msgid "Consult your motor's spec sheet for this information, or leave the default setting."
+msgstr ""
+
 #
 #, fuzzy
 msgid "Contact Info"
+msgstr "Kontrasti"
+
+#
+#, fuzzy
+msgid "Contact info"
 msgstr "Kontrasti"
 
 #, fuzzy
@@ -2791,6 +2842,10 @@ msgstr "Ajastusristiriidan takia ei voitu tallentaa %s"
 #, python-format
 msgid "Could not record due to invalid service %s"
 msgstr "Ei voitu tallentaa virheellisen kanavan takia %s"
+
+#, fuzzy
+msgid "Country"
+msgstr "Liitä"
 
 #
 #, fuzzy
@@ -3383,6 +3438,12 @@ msgstr "Etupaneelin näytön asetus"
 msgid "Djibouti"
 msgstr "Tietoja"
 
+msgid "Do center DVB subs on this service"
+msgstr ""
+
+msgid "Do not center DVB subs on this service"
+msgstr ""
+
 #
 msgid "Do not change"
 msgstr "Älä muuta"
@@ -3507,6 +3568,11 @@ msgstr "Haluatko tehdä uuden manuaalihaun?"
 
 #
 msgid "Do you want to install a channel list?"
+msgstr "Haluatko asentaa kanavalistan?"
+
+#
+#, fuzzy
+msgid "Do you want to install plugins"
 msgstr "Haluatko asentaa kanavalistan?"
 
 #
@@ -3677,6 +3743,10 @@ msgstr "Dynaaminen kontrasti"
 msgid "E"
 msgstr "E"
 
+#, fuzzy
+msgid "ECM Info"
+msgstr "Tietoja"
+
 msgid "ENABLE DISABLE PLUGIN IF U WANT IT"
 msgstr ""
 
@@ -3732,6 +3802,11 @@ msgstr "Editoi"
 #
 msgid "Edit chapters of current title"
 msgstr "Muokkaa kappaleita"
+
+#
+#, fuzzy
+msgid "Edit selection"
+msgstr "Ohjelmaoppaan valinta"
 
 #
 msgid "Edit settings"
@@ -3861,6 +3936,9 @@ msgstr ""
 msgid "Enable teletext caching"
 msgstr "Ota käyttöön teksti-tv:n välimuisti"
 
+msgid "Enable this setting if your aerial system needs power"
+msgstr ""
+
 msgid "Enable timer conflict detection"
 msgstr ""
 
@@ -3927,6 +4005,10 @@ msgid "English"
 msgstr "Englanti"
 
 #, python-format
+msgid "Enigma (re)starts: %d\n"
+msgstr ""
+
+#, python-format
 msgid "Enigma2 Build: %s"
 msgstr ""
 
@@ -3937,6 +4019,12 @@ msgstr ""
 #, fuzzy
 msgid "Enter PIN"
 msgstr "Syötä uusi PIN uudelleen"
+
+msgid "Enter if you are in the east or west hemisphere."
+msgstr ""
+
+msgid "Enter if you are north or south of the equator."
+msgstr ""
 
 #
 msgid "Enter main menu..."
@@ -3949,9 +4037,30 @@ msgstr "Syötä PIN-koodi"
 msgid "Enter pin code"
 msgstr "Syötä PIN-koodi"
 
+msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
+msgstr ""
+
+msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
+msgstr ""
+
+msgid "Enter the number stored in the positioner that corresponds to this satellite."
+msgstr ""
+
 #
 msgid "Enter the service pin"
 msgstr "Syötä kanavan tunnusluku"
+
+msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
+msgstr ""
+
+msgid "Enter your current longitude. This is the number of degrees you are from zero meridian as a decimal."
+msgstr ""
+
+msgid "Enter your high band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgstr ""
+
+msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgstr ""
 
 msgid "Equal to"
 msgstr ""
@@ -4207,6 +4316,9 @@ msgstr ""
 msgid "F1/F3/F4/F4-TURBO"
 msgstr ""
 
+msgid "FAILED"
+msgstr ""
+
 #, fuzzy
 msgid "FBC SCR (Unicable/JESS)"
 msgstr "Unicable"
@@ -4429,6 +4541,9 @@ msgstr ""
 #, fuzzy
 msgid "Force ToneBurst"
 msgstr "Äänipurske"
+
+msgid "Force legacy signal stats"
+msgstr ""
 
 #
 msgid "Format"
@@ -5028,6 +5143,9 @@ msgstr "Unkari"
 msgid "I"
 msgstr "C"
 
+msgid "IDLE"
+msgstr ""
+
 #
 msgid "IP address"
 msgstr "IP-osoite"
@@ -5064,6 +5182,24 @@ msgstr "Kuvakkeet"
 msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
+msgid "If enabled, display shows 12 chars instead 8, but in latin-1/translit only."
+msgstr ""
+
+msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
+msgstr ""
+
+msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
+msgstr ""
+
+msgid "If you are using a Circular polarised LNB select 'yes', otherwise select 'no'."
+msgstr ""
+
+msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
+msgstr ""
+
+msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
+msgstr ""
+
 #
 msgid ""
 "If you see this, something is wrong with\n"
@@ -5086,6 +5222,15 @@ msgstr ""
 "Älä välitä kirkkaista sävyistä, ne säädetään seuraavassa vaiheessa.\n"
 "\n"
 "Kun olet tyytyväinen tulokseen, paina OK."
+
+msgid "Ignore DVB-C namespace sub network"
+msgstr ""
+
+msgid "Ignore DVB-S namespace sub network"
+msgstr ""
+
+msgid "Ignore DVB-T namespace sub network"
+msgstr ""
 
 msgid "Ignore conflict"
 msgstr ""
@@ -5468,10 +5613,8 @@ msgstr "Mene seuraavaan merkkiin"
 msgid "Jump to previous marked position"
 msgstr "Mene edelliseen merkkiin"
 
-#
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-msgid "Just scale"
-msgstr "Aina kokoruutu"
+msgid "KA-SAT"
+msgstr ""
 
 msgid "Kazakhstan"
 msgstr ""
@@ -5608,6 +5751,9 @@ msgstr "Latvia"
 #
 msgid "Leave DVD player?"
 msgstr "Poistutaanko DVD-soittimesta?"
+
+msgid "Leave this set to 'yes' unless you fully understand why you are adjusting it."
+msgstr ""
 
 msgid "Lebanon"
 msgstr ""
@@ -5923,11 +6069,6 @@ msgid "Manufacturer"
 msgstr "Valmistaja"
 
 #
-#, fuzzy
-msgid "Manufacturer info"
-msgstr "Valmistaja"
-
-#
 msgid "Margin after recording (minutes)"
 msgstr "Lisäaika tallenteen loppuun (minuuttia)"
 
@@ -6032,7 +6173,13 @@ msgstr ""
 msgid "Micronesia (Federated States of)"
 msgstr ""
 
-msgid "MiniTV"
+msgid "MiniTV - video0"
+msgstr ""
+
+msgid "MiniTV - video0+video1"
+msgstr ""
+
+msgid "MiniTV - video1"
 msgstr ""
 
 msgid "MiniTV framerate"
@@ -6042,7 +6189,13 @@ msgstr ""
 msgid "MiniTV on frontpanel"
 msgstr "etupaneeli"
 
-msgid "MiniTV with OSD"
+msgid "MiniTV with OSD - video0+fb"
+msgstr ""
+
+msgid "MiniTV with OSD - video0+video1+fb"
+msgstr ""
+
+msgid "MiniTV with OSD - video1+fb"
 msgstr ""
 
 #, python-format
@@ -6063,6 +6216,11 @@ msgstr "Tila"
 #
 msgctxt "Video output mode"
 msgid "Mode"
+msgstr "Tila"
+
+#
+#, fuzzy
+msgid "Model"
 msgstr "Tila"
 
 #
@@ -6548,6 +6706,9 @@ msgstr ""
 msgid "No Connection"
 msgstr "Ei yhteyttä"
 
+msgid "No ECMPids available (FTA Service)"
+msgstr ""
+
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
@@ -6566,9 +6727,6 @@ msgstr ""
 #
 msgid "No backup needed"
 msgstr "Varmuuskopiota ei tarvita"
-
-msgid "No cable tuner found!"
-msgstr "Kaapeliviritintä ei löytynyt!"
 
 #
 msgid ""
@@ -6743,11 +6901,6 @@ msgstr "Ei, kanavat haetaan myöhemmin manuaalisesti"
 msgid "None"
 msgstr "Ei mitään"
 
-#
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-msgid "Nonlinear"
-msgstr "Epälineaarinen"
-
 msgid "Norfolk Island"
 msgstr ""
 
@@ -6777,9 +6930,6 @@ msgstr "Käyttäjän määrittelemä"
 
 msgid "Not associated"
 msgstr "Ei liitetty"
-
-msgid "Not configured"
-msgstr ""
 
 #
 #, python-format
@@ -6813,9 +6963,6 @@ msgid "Not-Associated"
 msgstr "Ei liitetty"
 
 msgid "Note: when enabled, and you do want standby mode after wake up, set option 'Startup to Standby' as 'No, except Wakeup timer'."
-msgstr ""
-
-msgid "Nothing connected"
 msgstr ""
 
 #
@@ -6872,9 +7019,8 @@ msgstr "OK, opasta minua päivityksessä"
 msgid "ONID"
 msgstr "ONID"
 
-#, fuzzy
-msgid "OSD"
-msgstr "SID"
+msgid "OSD - fb"
+msgstr ""
 
 #
 #, fuzzy
@@ -6914,6 +7060,9 @@ msgstr "Tallenteen lopussa"
 msgid "On end of movie (as menu)"
 msgstr ""
 
+msgid "On valid ONIDs, ignore frequency sub network part"
+msgstr ""
+
 msgid "Once per day"
 msgstr ""
 
@@ -6933,6 +7082,9 @@ msgstr "Epälineaarinen"
 msgid "Online = Download a image and flash it"
 msgstr ""
 
+msgid "Only change this setting if you are using a Unicable device that has been reprogrammed with a custom programmer. For further information check with the person that reprogrammed the device."
+msgstr ""
+
 msgid "Only extensions."
 msgstr "Vain laajennukset."
 
@@ -6940,7 +7092,16 @@ msgstr "Vain laajennukset."
 msgid "Only free scan"
 msgstr "Hae vain salaamattomat"
 
+msgid "Only move the dish quickly after this hour."
+msgstr ""
+
+msgid "Only move the dish quickly before this hour."
+msgstr ""
+
 msgid "Only on startup"
+msgstr ""
+
+msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
 msgstr ""
 
 #
@@ -7133,6 +7294,7 @@ msgid "Palestine, State of"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
 msgid "Pan&scan"
 msgstr "Pan&Scan"
 
@@ -7215,9 +7377,6 @@ msgid "Peru"
 msgstr ""
 
 msgid "Philippines"
-msgstr ""
-
-msgid "Phone"
 msgstr ""
 
 #
@@ -7623,6 +7782,11 @@ msgid "Plugin browser"
 msgstr "Asennetut Plugin-lisäosat"
 
 #
+#, fuzzy
+msgid "Plugin install"
+msgstr "Poista asennus"
+
+#
 msgid "Plugin manager activity information"
 msgstr "Lisäosien hallinnan asennustiedot"
 
@@ -7715,12 +7879,18 @@ msgstr "Kääntömoottorin asetukset"
 msgid "Positioner setup log"
 msgstr "Kääntömoottorin asetukset"
 
+msgid "Power management. Consult your receiver's manual for more information."
+msgstr ""
+
 msgid "Power on display"
 msgstr ""
 
 #
 msgid "Power threshold in mA"
 msgstr "Tunnistusvirta mA"
+
+msgid "Power threshold. Consult your receiver's manual for more information."
+msgstr ""
 
 #
 #, fuzzy
@@ -7821,6 +7991,9 @@ msgstr "Katso %s lisätietoja OK-näppäimellä"
 #
 msgid "Press OK to scan"
 msgstr "Aloita haku painamalla OK"
+
+msgid "Press OK to select a group of satellites to configure in one block."
+msgstr ""
 
 #
 msgid "Press OK to select a provider."
@@ -8982,6 +9155,45 @@ msgstr "Siirry eteenpäin (syötä aika)"
 msgid "Select"
 msgstr "Valitse"
 
+msgid "Select '1.0' for standard committed switches, '1.1' for uncommitted switches, and '1.2' for systems using a positioner."
+msgstr ""
+
+msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
+msgstr ""
+
+msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
+msgstr ""
+
+msgid "Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."
+msgstr ""
+
+msgid "Select 'polarisation' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
+msgstr ""
+
+msgid "Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."
+msgstr ""
+
+msgid "Select 'yes' if this tuner is connected to the Unicable device through another tuner, otherwise select 'no'."
+msgstr ""
+
+msgid "Select 'yes' to choose what bands or step sizes will be scanned."
+msgstr ""
+
+#, python-format
+msgid "Select 'yes' to include %s multiplexes in your search."
+msgstr ""
+
+#, python-format
+msgid "Select 'yes' to include symbol rate %s in your search."
+msgstr ""
+
+#, python-format
+msgid "Select 'yes' to include the %s band in your search."
+msgstr ""
+
+msgid "Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap."
+msgstr ""
+
 #
 #, fuzzy, python-format
 msgid "Select Bootoption: %s"
@@ -8999,6 +9211,9 @@ msgstr "Valitse CAId"
 msgid "Select Channel"
 msgstr "Valitse viritin"
 
+msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
+msgstr ""
+
 #
 msgid "Select HDD"
 msgstr "Valitse kiintolevy"
@@ -9006,6 +9221,11 @@ msgstr "Valitse kiintolevy"
 #
 #, fuzzy, python-format
 msgid "Select Image: %s"
+msgstr "Valitse teema"
+
+#
+#, fuzzy
+msgid "Select Image: STARTUP_1"
 msgstr "Valitse teema"
 
 #
@@ -9091,6 +9311,22 @@ msgstr "Valitse varmistettavat tiedostot."
 msgid "Select files/folders to backup"
 msgstr "Valitse varmistettavat tiedostot/kansiot"
 
+#
+#, fuzzy
+msgid "Select function"
+msgstr "Valitse varmuuskopion sijainti"
+
+#
+#, fuzzy
+msgid "Select horizontal resolution:"
+msgstr "Valitse varmuuskopion sijainti"
+
+msgid "Select how quickly the dish should move between satellites."
+msgstr ""
+
+msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
+msgstr ""
+
 msgid "Select how your box will upgrade."
 msgstr ""
 
@@ -9161,9 +9397,54 @@ msgstr "Valitse kohdehakemisto"
 msgid "Select the Swap File Size:"
 msgstr ""
 
+msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
+msgstr ""
+
+msgid "Select the format of your Unicable device. Choices are 'SCR Unicable' (Unicable I format), or 'SCR JESS' (Unicable II format)."
+msgstr ""
+
+msgid "Select the manufacturer of your Unicable device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgstr ""
+
+msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgstr ""
+
 #
 msgid "Select the movie path"
 msgstr "Valitse tallennehakemisto"
+
+msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr ""
+
+msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr ""
+
+msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr ""
+
+msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr ""
+
+msgid "Select the satellite you want to configure. Once that satellite is configured you can select and configure other satellites that will be accessed using this same tuner."
+msgstr ""
+
+msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
+msgstr ""
+
+msgid "Select the tuner that controls the motorised dish."
+msgstr ""
+
+msgid "Select the tuner that this loopthrough depends on."
+msgstr ""
+
+msgid "Select the tuner to which the signal cable of the Unicable device is connected."
+msgstr ""
+
+msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'user defined'."
+msgstr ""
+
+msgid "Select the type of Unicable device you are using."
+msgstr ""
 
 #
 msgid "Select upgrade source"
@@ -9185,6 +9466,11 @@ msgstr "Valitse video-tila"
 msgid "Select wireless network"
 msgstr "Valitse WLAN-verkko"
 
+#
+#, fuzzy
+msgid "Select your ATSC provider."
+msgstr "Lisää palveluntarjoaja"
+
 #, fuzzy
 msgid "Select your LCD clock and press OK to activate the selected clock."
 msgstr "Valitse palveluntarjoaja ja aloita haku painamalla OK"
@@ -9194,8 +9480,17 @@ msgstr "Valitse palveluntarjoaja ja aloita haku painamalla OK"
 msgid "Select your Skin"
 msgstr "Valitse teema"
 
+msgid "Select your country. If not available select 'all'."
+msgstr ""
+
+msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
+msgstr ""
+
 msgid "Select your provider, and press OK to start the scan"
 msgstr "Valitse palveluntarjoaja ja aloita haku painamalla OK"
+
+msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
+msgstr ""
 
 #
 #, fuzzy
@@ -9209,6 +9504,12 @@ msgid "Selecting satellites 1 (USALS)"
 msgstr ""
 
 msgid "Selecting satellites 2 (USALS)"
+msgstr ""
+
+msgid "Selecting this option allows you to configure a group of satellites in one block."
+msgstr ""
+
+msgid "Send 'sourceactive' before zap timers"
 msgstr ""
 
 #
@@ -9274,6 +9575,11 @@ msgstr "Kanava on lisätty valitulle suosikkilistalle."
 
 #
 msgid "Service info"
+msgstr "Kanavatiedot"
+
+#
+#, fuzzy
+msgid "Service info - ECM Info"
 msgstr "Kanavatiedot"
 
 msgid "Service info - service & PIDs"
@@ -9368,6 +9674,9 @@ msgid "Set limits"
 msgstr "Aseta raja-arvot"
 
 msgid "Set pin code persistent"
+msgstr ""
+
+msgid "Set sequence repeats if your aerial system requires this. Normally if the aerial system has been configured correctly sequence repeats will not be necessary. If yours does, recheck you have command order set correctly."
 msgstr ""
 
 #, fuzzy
@@ -9841,9 +10150,6 @@ msgstr "Suppea (yhteensopiva vanhojen soittimien kanssa)"
 #, fuzzy
 msgid "Simple zoom"
 msgstr "Suppea"
-
-msgid "Simplified Chinese"
-msgstr ""
 
 msgid "Simulate (no write)"
 msgstr ""
@@ -10393,11 +10699,6 @@ msgstr "Pysäytetty"
 msgid "Storage media"
 msgstr "uusmedia"
 
-#
-#, fuzzy
-msgid "Store"
-msgstr "Palauta"
-
 msgid "Store at index"
 msgstr "Tallenna indeksiin"
 
@@ -10417,6 +10718,17 @@ msgstr "Streamin pyyntö"
 
 msgid "Streaming clients info"
 msgstr ""
+
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+msgid "Stretch linear"
+msgstr ""
+
+#
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#, fuzzy
+msgid "Stretch nonlinear"
+msgstr "Epälineaarinen"
 
 msgid "Stripes"
 msgstr ""
@@ -10682,6 +10994,9 @@ msgid "TSID"
 msgstr "TSID"
 
 msgid "TUNER:"
+msgstr ""
+
+msgid "TUNING"
 msgstr ""
 
 msgid "TV physical address report"
@@ -11037,10 +11352,20 @@ msgstr ""
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr ""
 
+#, python-format
+msgid "This field allows you to search an additional symbol rate up to %s."
+msgstr ""
+
 msgid ""
 "This info is for developers only.\n"
 "It is not important for a normal user.\n"
 "Please - do not panic on any displayed suspicious information!"
+msgstr ""
+
+msgid "This is a multitype tuner. Available options depend on the hardware. Cable and terrestrial cannot be configured at the same time. If you want to use as cable + satellite or terrestrial + satellite, configure cable/terrestrial first and then save. Re-open and configure again as satellite."
+msgstr ""
+
+msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -11155,6 +11480,15 @@ msgstr "Tämä lisäosa poistetaan."
 #, python-format
 msgid "This receiver cannot decode %s streams!"
 msgstr "Tämä vastaanotin ei osaa purkaa %s striimejä!"
+
+msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
+msgstr ""
+
+msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum."
+msgstr ""
+
+msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
+msgstr ""
 
 #
 msgid ""
@@ -11357,9 +11691,6 @@ msgstr "Avaa tekstitysvalinta"
 msgid "Today"
 msgstr "Tänään"
 
-msgid "Toggle Extra Keys"
-msgstr ""
-
 msgid "Toggle HDMI In"
 msgstr ""
 
@@ -11418,10 +11749,6 @@ msgstr ""
 #
 msgid "Track"
 msgstr "Raita"
-
-#, fuzzy
-msgid "Traditional Chinese"
-msgstr "kansan/perinteinen musiikki"
 
 #
 #, fuzzy
@@ -11514,11 +11841,6 @@ msgstr "Viritin"
 
 #
 #, fuzzy
-msgid "Tuner "
-msgstr "Viritin"
-
-#
-#, fuzzy
 msgid "Tuner Configuration"
 msgstr "Virittimien asetukset"
 
@@ -11544,8 +11866,8 @@ msgid "Tuner slot"
 msgstr "Viritinpaikka"
 
 #
-#, python-format
-msgid "Tuner status %s"
+#, fuzzy
+msgid "Tuner status:"
 msgstr "Virittimen tila %s"
 
 msgid "Tuner type"
@@ -11600,6 +11922,9 @@ msgstr "Tyyppi"
 msgid "Type of scan"
 msgstr "Hakutapa"
 
+msgid "UNKNOWN"
+msgstr ""
+
 msgid "URL"
 msgstr ""
 
@@ -11609,6 +11934,9 @@ msgstr ""
 #
 msgid "USALS"
 msgstr "USALS"
+
+msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
+msgstr ""
 
 msgid "USALS calibration"
 msgstr "USALS-kalibrointi"
@@ -11656,6 +11984,10 @@ msgstr ""
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr ""
 
+#, fuzzy
+msgid "Undefined"
+msgstr "määrittämätön"
+
 #
 msgid "Undo install"
 msgstr "Kumoa asennus"
@@ -11689,7 +12021,7 @@ msgstr ""
 msgid "United Arab Emirates"
 msgstr ""
 
-msgid "United Kingdom of Great Britain and Northern Ireland"
+msgid "United Kingdom"
 msgstr ""
 
 msgid "United States Minor Outlying Islands"
@@ -11782,6 +12114,9 @@ msgstr "Asetukset"
 msgid "Use"
 msgstr "Käytä"
 
+msgid "Use 12 characters display mode"
+msgstr ""
+
 msgid "Use CI assignment for detection of available services."
 msgstr ""
 
@@ -11820,6 +12155,9 @@ msgstr ""
 #
 msgid "Use a gateway"
 msgstr "Käytä yhdyskäytävää"
+
+msgid "Use as PiP if possible"
+msgstr ""
 
 #
 #, fuzzy
@@ -12132,6 +12470,9 @@ msgstr ""
 msgid "Virtual keyboard"
 msgstr "Virtuaalinen näppäimistö"
 
+msgid "Visual impaired commentary"
+msgstr ""
+
 #
 msgid "Voltage mode"
 msgstr "13/18V-jännite"
@@ -12253,6 +12594,14 @@ msgstr "Toista tallenteet..."
 #
 msgid "Watch recordings..."
 msgstr "Tallennetaan..."
+
+#, python-format
+msgid ""
+"We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
+"Please send the logfile %senigma2_crash_xxxxxx.log to www.teamblue.tech.\n"
+"Your receiver restarts in 10 seconds!\n"
+"Component: enigma2"
+msgstr ""
 
 msgid "Weather GigaBlue Pax"
 msgstr ""
@@ -12447,9 +12796,6 @@ msgstr "Kun päällä, teksti-tv pohjaiset tekstitykset näytetään aina tallen
 
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr "Kun päällä, DVB-tekstitystä suositaan teksti-tv pohjaisen tekstityksen sijaan, kun molemmat ovat saatavilla."
-
-msgid "When enabled, graphical DVB subtitles will be centered horizontally."
-msgstr "Kun päällä, DVB-tekstitys näytetään vaakasuunnassa keskitetysti. "
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Kun päällä, DVB-tekstitys näytetään alkuperäisellä paikallaan."
@@ -12948,6 +13294,12 @@ msgstr "Internet yhteytesi toimii (ip: %s)"
 msgid "Your network configuration has been activated."
 msgstr "Verkkoasetukset on aktivoitu."
 
+msgid "Your receiver can use SCPC optimized search range. Consult your receiver's manual for more information."
+msgstr ""
+
+msgid "Your receiver can use tone amplitude. Consult your receiver's manual for more information."
+msgstr ""
+
 msgid "Your receiver does not have an internet connection"
 msgstr "Vastaanottimellasi ei ole internet yhteyttä"
 
@@ -13050,6 +13402,14 @@ msgstr ""
 #, fuzzy
 msgid "Zap-History Browser"
 msgstr "Hakemistoselain"
+
+#, python-format
+msgid "Zapped to timer service %s as PiP!"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "Zapped to timer service %s!"
+msgstr "Mene ensimmäiselle kanavalle"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
 msgstr ""
@@ -14489,6 +14849,10 @@ msgstr "turismi/matkailu"
 msgid "true"
 msgstr "tosi"
 
+#, fuzzy
+msgid "type"
+msgstr "Luettelon tyyppi"
+
 #
 msgid "unavailable"
 msgstr "ei saatavilla"
@@ -14884,9 +15248,6 @@ msgstr "Vaihdettu"
 #~ msgid "Conflicting timer"
 #~ msgstr "Ristiriita ajastusten välillä"
 
-#~ msgid "Connected!"
-#~ msgstr "Yhdistetty!"
-
 #~ msgid "Could not connect to receiver .NFI image feed server:"
 #~ msgstr "Ei yhteyttä .NFI ohjelmistoa tarjoavaan palvelimeen:"
 
@@ -15138,6 +15499,10 @@ msgstr "Vaihdettu"
 #~ msgid "Installing package content... Please wait..."
 #~ msgstr "Asennetaan paketin sisältö...Odota..."
 
+#
+#~ msgid "Just scale"
+#~ msgstr "Aina kokoruutu"
+
 #~ msgid "Keep old timers for how many days"
 #~ msgstr "Säilytä vanhoja ajastuksia (päivää)"
 
@@ -15178,6 +15543,11 @@ msgstr "Vaihdettu"
 
 #~ msgid "Manage extensions"
 #~ msgstr "Hallitse laajennuksia"
+
+#
+#, fuzzy
+#~ msgid "Manufacturer info"
+#~ msgstr "Valmistaja"
 
 #~ msgid "MediaPlayer"
 #~ msgstr "Mediasoitin"
@@ -15238,6 +15608,9 @@ msgstr "Vaihdettu"
 #~ msgid "Next"
 #~ msgstr "Seuraava"
 
+#~ msgid "No cable tuner found!"
+#~ msgstr "Kaapeliviritintä ei löytynyt!"
+
 #
 #~ msgid "No details for this image file"
 #~ msgstr "Ei tietoja tästä päivityksestä"
@@ -15292,6 +15665,10 @@ msgstr "Vaihdettu"
 #
 #~ msgid "OK, remove some extensions"
 #~ msgstr "OK, poista joitain laajennuksia"
+
+#, fuzzy
+#~ msgid "OSD"
+#~ msgstr "SID"
 
 #
 #, fuzzy
@@ -15525,6 +15902,11 @@ msgstr "Vaihdettu"
 
 #
 #, fuzzy
+#~ msgid "Store"
+#~ msgstr "Palauta"
+
+#
+#, fuzzy
 #~ msgid "System Message"
 #~ msgstr "Viesti"
 
@@ -15591,6 +15973,10 @@ msgstr "Vaihdettu"
 #~ "2) Laita virta takaisin päälle ja paina ALAS näppäintä vastaanottimesi etupaneelissa 10 sekunnin ajan.\n"
 #~ "3) Odota käynnistymistä ja seuraa avustajan ohjeita."
 
+#, fuzzy
+#~ msgid "Traditional Chinese"
+#~ msgstr "kansan/perinteinen musiikki"
+
 #
 #, fuzzy
 #~ msgid "Transponder Information"
@@ -15599,6 +15985,11 @@ msgstr "Vaihdettu"
 #
 #~ msgid "Transponder type"
 #~ msgstr "Lähettimen tyyppi"
+
+#
+#, fuzzy
+#~ msgid "Tuner "
+#~ msgstr "Viritin"
 
 #~ msgid "Tuning step size"
 #~ msgstr "Viritysaskeleen koko"
@@ -15656,6 +16047,9 @@ msgstr "Vaihdettu"
 
 #~ msgid "When enabled, external subtitles (in media files) will be displayed in yellow, instead of the original color."
 #~ msgstr "Kun päällä, ulkoiset tekstitykset (media tiedostoissa) näytetään keltaisella alkuperäisen värin sijaan."
+
+#~ msgid "When enabled, graphical DVB subtitles will be centered horizontally."
+#~ msgstr "Kun päällä, DVB-tekstitys näytetään vaakasuunnassa keskitetysti. "
 
 #~ msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 #~ msgstr "Kun päällä, alkuperäisessä teksti-tv pohjaisessa tekstityksessä olevat rivinvaihdot poistetaan."
