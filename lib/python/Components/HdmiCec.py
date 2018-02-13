@@ -4,7 +4,8 @@ from enigma import eTimer, eHdmiCEC, eActionMap
 from Tools.StbHardware import getFPWasTimerWakeup
 import NavigationInstance
 
-from sys import maxint
+# sys.maxint on 64bit (2**63-1) fails with OverflowError on eActionMap.bindAction use 32bit value (2**31-1)
+maxint = 2147483647
 
 LOGPATH="/hdd/"
 LOGFILE="hdmicec.log"
