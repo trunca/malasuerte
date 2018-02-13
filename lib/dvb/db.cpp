@@ -15,6 +15,7 @@
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
+#include <dvbsi++/s2_satellite_delivery_system_descriptor.h>
 #include <dirent.h>
 
 DEFINE_REF(eDVBService);
@@ -69,7 +70,7 @@ RESULT eBouquet::removeService(const eServiceReference &ref, bool renameBouquet)
 
 RESULT eBouquet::moveService(const eServiceReference &ref, unsigned int pos)
 {
-	if ( pos < 0 || pos >= m_services.size() )
+	if (pos >= m_services.size())
 		return -1;
 	++pos;
 	list::iterator source=m_services.end();
