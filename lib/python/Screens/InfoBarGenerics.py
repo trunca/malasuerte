@@ -1895,7 +1895,7 @@ class InfoBarShowMovies:
 # note that a timeshift can be enabled ("recording") and
 # activated (currently time-shifting).
 
-class InfoBarTimeshift(InfoBarSeek):
+class InfoBarTimeshift():
 	ts_disabled = False
 
 	def __init__(self):
