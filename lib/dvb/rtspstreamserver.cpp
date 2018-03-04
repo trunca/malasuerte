@@ -1192,9 +1192,8 @@ void eRTSPStreamClient::notifier(int what)
 
 		if (tuner_s2)
 		{
-			ss << "DVBS2-" << tuner_s2;
+			ss << "DVBS2-" << tuner_s2 << s;
 			s = ",";
-			ss << s;
 		}
 		if (tuner_t)
 		{
