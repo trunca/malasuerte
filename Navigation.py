@@ -1,4 +1,5 @@
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, setPreferredTuner, eStreamServer
+from Components.ImportChannels import ImportChannels
 from Components.ParentalControl import parentalControl
 from Components.SystemInfo import SystemInfo
 from Components.config import config, configfile
@@ -88,13 +89,18 @@ class Navigation:
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
+		if config.usage.remote_fallback_channelsimport_restart.value:
+			ImportChannels()
 		if config.misc.RestartUI.value:
 			config.misc.RestartUI.value = False
 			config.misc.RestartUI.save()
 			configfile.save()
-		elif startup_to_standby == "yes" or self.__wasTimerWakeup and config.misc.prev_wakeup_time.value and ((wakeup_time_type == 0 or wakeup_time_type == 1) or ( wakeup_time_type == 3 and startup_to_standby == "except")):
-			if not Screens.Standby.inTryQuitMainloop:
-				Notifications.AddNotification(Screens.Standby.Standby)
+		else:
+			if config.usage.remote_fallback_channelsimport.value and not config.usage.remote_fallback_channelsimport_restart.value:
+				ImportChannels()
+			if startup_to_standby == "yes" or self.__wasTimerWakeup and config.misc.prev_wakeup_time.value and ((wakeup_time_type == 0 or wakeup_time_type == 1) or ( wakeup_time_type == 3 and startup_to_standby == "except")):
+				if not Screens.Standby.inTryQuitMainloop:
+					Notifications.AddNotification(Screens.Standby.Standby)
 		if config.misc.prev_wakeup_time.value:
 			config.misc.prev_wakeup_time.value = 0
 			config.misc.prev_wakeup_time.save()
