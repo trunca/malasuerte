@@ -62,8 +62,8 @@ class Standby2(Screen):
 		print "[Standby] enter standby"
 		if os.path.exists("/usr/script/Standby.sh"):
 			Console().ePopen("/usr/script/Standby.sh off")
-		#if os.path.exists("/usr/script/standby_enter.sh"):
-		#	Console().ePopen("/usr/script/standby_enter.sh")
+		if os.path.exists("/usr/script/standby_enter.sh"):
+			Console().ePopen("/usr/script/standby_enter.sh")
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{
@@ -161,9 +161,9 @@ class Standby2(Screen):
 		if os.path.exists("/usr/script/Standby.sh"):
 			Console().ePopen("/usr/script/Standby.sh on")
 		self.leaveMute()
-		#if os.path.exists("/usr/script/standby_leave.sh"):
-		#	Console().ePopen("/usr/script/standby_leave.sh")
-		if config.usage.remote_fallback_channelsimport_standby.value:
+		if os.path.exists("/usr/script/standby_leave.sh"):
+			Console().ePopen("/usr/script/standby_leave.sh")
+		if config.usage.remote_fallback_import_standby.value:
 			ImportChannels()
 
 	def __onFirstExecBegin(self):
