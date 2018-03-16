@@ -1467,14 +1467,13 @@ void eEPGCache::save()
 			return;
 		}
 	
-		free(buf);
-	
 		// check for enough free space on storage
 		tmp=s.f_bfree;
 		tmp*=s.f_bsize;
 		if ( tmp < (eventData::CacheSize*12)/10 ) // 20% overhead
 		{
 			eDebug("[eEPGCache] not enough free space at '%s' %zu bytes available but %u needed", buf, tmp, (eventData::CacheSize*12)/10);
+			free(buf);
 			fclose(f);
 			return;
 		}
