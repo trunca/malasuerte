@@ -18,7 +18,7 @@ PACKAGES =+ "${PN}-src"
 PACKAGES += "${PN}-meta"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-inherit autotools-brokensep pkgconfig pythonnative
+inherit autotools pkgconfig pythonnative
 
 ACLOCALDIR = "${B}/aclocal-copy"
 e2_copy_aclocal () {
