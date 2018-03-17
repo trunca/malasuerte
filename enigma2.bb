@@ -62,7 +62,7 @@ EXTRA_OECONF = "\
     ${@base_contains("MACHINE_FEATURES", "osdanimation", "--with-osdanimation" , "", d)} \
     "
 
-LDFLAGS_prepend = "${@base_contains('GST_VERSION', '1.0', ' -lxml2 ', '', d)}"
+
 
 do_install_append() {
     install -d ${D}/usr/share/keymaps
