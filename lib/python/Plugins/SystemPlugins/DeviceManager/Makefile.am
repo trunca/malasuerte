@@ -1,5 +1,5 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins/DeviceManager
 
-SUBDIRS = icons
+SUBDIRS = 
 
 install_PYTHON = *.py
